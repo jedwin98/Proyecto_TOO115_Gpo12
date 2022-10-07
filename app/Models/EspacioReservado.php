@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Ejecutivo;
 use App\Models\Sucursal;
-
+use App\Models\SolicitudAsociado;
 
 class EspacioReservado extends Model
 {
@@ -19,5 +19,7 @@ class EspacioReservado extends Model
     public function sucursal(){
         return $this->belongsTo(Sucursal::class);
     }
-
+    public function solicitudAsociados(){
+        return $this->hasMany(SolicitudAsociado::class);
+    }
 }
