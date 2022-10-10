@@ -8,7 +8,7 @@
     <div class="container">
         <div class="card">
         <div class="card-header text-center">
-            Laravel Livewire Wizard Form Example
+            Registro de datos para asociado
         </div>
         <div class="card-body">
             <livewire:wizard />

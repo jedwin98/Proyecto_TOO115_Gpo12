@@ -21,7 +21,7 @@ class CreateCiudadsTable extends Migration
             $table->string('pais_iso',3)->nullable();
             $table->timestamps();
 
-            $table->foreign('pais_iso')->references('iso')->on('pais')->onDelete('cascade');
+            //$table->foreign('pais_iso')->references('iso')->on('pais')->onDelete('cascade');
 
         });
     }
