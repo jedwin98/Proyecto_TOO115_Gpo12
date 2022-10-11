@@ -32,6 +32,7 @@ class CreateDatosPersonalesTable extends Migration
             $table->string('pais_iso',30)->nullable();
             $table->unsignedBigInteger('genero_id')->nullable();
             $table->unsignedBigInteger('tipo_documento_id')->nullable();
+            $table->unsignedBigInteger('direccion_id')->nullable();
 
 
             $table->timestamps();
@@ -39,6 +40,7 @@ class CreateDatosPersonalesTable extends Migration
             $table->foreign('pais_iso')->references('iso')->on('pais')->onDelete('cascade');
             $table->foreign('genero_id')->references('id')->on('generos')->onDelete('cascade');
             $table->foreign('tipo_documento_id')->references('id')->on('tipo_documentos')->onDelete('cascade');
+            $table->foreign('direccion_id')->references('id')->on('direccions')->onDelete('cascade');
 
 
         });

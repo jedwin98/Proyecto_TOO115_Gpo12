@@ -9,6 +9,7 @@ use App\Models\TipoDocumento;
 use App\Models\Genero;
 use App\Models\SolicitudAsociado;
 use App\Models\Asociado;
+use App\Models\Direccion;
 class DatosPersonale extends Model
 {
     use HasFactory;
@@ -21,6 +22,9 @@ class DatosPersonale extends Model
     }
     public function genero(){
         return $this->belongsTo(Genero::class);
+    }
+    public function direccion(){
+        return $this->belongsTo(Direccion::class);
     }
     public function solicitudAsociados(){
         return $this->hasMany(SolicitudAsociado::class);
