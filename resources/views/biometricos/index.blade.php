@@ -18,15 +18,15 @@
                         <div class="col-md-6">
                             <div id="my_camera" style="height:auto;width:auto; text-align:left;"></div>
                             <br/>
-                            <input type=button value="Take Snapshot" onClick="take_snapshot()">
+                            <input type=button class="btn btn-success" value="Tomar foto" onClick="take_snapshot()">
                             <input type="hidden" name="image" class="image-tag">
                         </div>
                         <div class="col-md-6">
-                            <div id="results">Your captured image will appear here...</div>
+                            <div id="results">Tu foto aparecerá aquí...</div>
                         </div>
                         <div class="col-md-12 text-center">
                             <br/>
-                            <button class="btn btn-success">Submit</button>
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="submit" >Siguiente</button>
                         </div>
                     </div>
                     <script language="JavaScript">
@@ -52,8 +52,8 @@
 
                 </div>
   
-                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="sixthStepSubmit">Siguiente</button>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(5)">Anterior</button>
+               
+                
             </div>
         </div>
     </div>
