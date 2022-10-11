@@ -159,23 +159,10 @@
             </div>
         </div>
     </div>
-    <div class="row setup-content {{ $currentStep != 6 ? 'displayNone' : '' }}" id="step-6">
-        <div class="col-xs-12">
-            <div class="col-md-12">
-                <h3> Paso 6</h3>
-  
-                <div class="form-group">
-                    <label for="description">Dato 4</label>
-                    <input type="text" wire:model="dato4" class="form-control" id="dato4"/>
-                    @error('stock') <span class="error">{{ $message }}</span> @enderror
-                </div>
-  
-                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="sixthStepSubmit">Siguiente</button>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(5)">Anterior</button>
-            </div>
-        </div>
-    </div>
-    <div class="row setup-content {{ $currentStep != 7 ? 'displayNone' : '' }}" id="step-7">
+    
+        
+   
+    <div class="row setup-content {{ $currentStep != 6 ? 'displayNone' : '' }}" id="step-7">
         <div class="col-xs-12">
             <div class="col-md-12">
                 <h3> Paso 7</h3>
@@ -225,5 +212,6 @@
         </div>
     </div>
 </div>
+
 
 

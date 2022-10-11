@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DatosBiometricosController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/registro_asociado', function () {
     return view('form');
 });
+
+Route::get('biometricos',[DatosBiometricosController::class,'index'])->name('biometricos.index');
