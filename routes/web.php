@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/registro_asociado', function () {
+Route::match(['get','post'],'/registro_asociado', function () {
     return view('form');
 });
 

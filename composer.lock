@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b90ec5075025c3a804166c32b9baa507",
+    "content-hash": "01b7d23366a326c27e67d96c8b933347",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -492,6 +492,57 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "filippo-toso/positionstack",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filippotoso/positionstack.git",
+                "reference": "c4e72ac07a500c23ce9a00186ed4fae6bd897dc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filippotoso/positionstack/zipball/c4e72ac07a500c23ce9a00186ed4fae6bd897dc3",
+                "reference": "c4e72ac07a500c23ce9a00186ed4fae6bd897dc3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=8.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "FilippoToso\\PositionStack\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "PositionStack": "FilippoToso\\PositionStack\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FilippoToso\\PositionStack\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filippo Toso",
+                    "email": "filippo.toso@creativepark.it"
+                }
+            ],
+            "description": "A simple Laravel library to execute queries to positionstack.com",
+            "support": {
+                "issues": "https://github.com/filippotoso/positionstack/issues",
+                "source": "https://github.com/filippotoso/positionstack/tree/v1.0.1"
+            },
+            "time": "2021-04-16T07:59:28+00:00"
         },
         {
             "name": "fruitcake/laravel-cors",

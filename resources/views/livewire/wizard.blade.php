@@ -66,15 +66,14 @@
         </div>
     </div>
     <div class="row setup-content {{ $currentStep != 2 ? 'displayNone' : '' }}" id="step-2">
-        <div class="col-xs-12">
-            <div class="col-md-12">
+        <br>
+            <div class="col">
                 <h3> Datos de residencia</h3>
-  
                 <div class="form-group">
                     <label for="description">Pais</label><br/>
-                    <select class="form-control" aria-label="Default select example" wire:model="selectedPais">
+                    <select class="form-control" id="pais" aria-label="Default select example" wire:model="selectedPais">
                         @foreach($paises as $pais)
-                            <option value="{{$pais->iso}}" required>{{$pais->nombreMin}}</option>
+                            <option value="{{$pais->iso}}">{{$pais->nombreMin}}</option>
                         @endforeach
                     </select>
                     @error('paises') <span class="error text-danger">{{ $message }}</span> @enderror
@@ -82,7 +81,7 @@
                 @if(!is_null($ciudades)) 
                 <div class="form-group">
                     <label for="description">Ciudad</label><br/>
-                    <select class="form-control" aria-label="Default select example" wire:model="selectedCiudad">
+                    <select class="form-control" id="ciudad" aria-label="Default select example" wire:model="selectedCiudad">
                         @foreach($ciudades as $ciudad)
                             <option value="{{$ciudad->id}}" required>{{$ciudad->nombreCiudad}}</option>
                         @endforeach
@@ -105,11 +104,13 @@
                     <input type="text" class="form-control" wire:model="numeroVivienda">
                     @error('numeroVivienda') <span class="error text-danger">{{ $message }}</span> @enderror
                 </div>
-
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="secondStepSubmit">Siguiente</button>
                 <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(1)">Anterior</button>
             </div>
-        </div>
+            <br>
+            <div class="col">
+                <div id='map' style='width: 400px; height: 300px;' wire:ignore></div>
+            </div>
     </div>
     <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
         <div class="col-xs-12">
@@ -162,10 +163,10 @@
     
         
    
-    <div class="row setup-content {{ $currentStep != 6 ? 'displayNone' : '' }}" id="step-7">
+    <div class="row setup-content {{ $currentStep != 6 ? 'displayNone' : '' }}" id="step-6">
         <div class="col-xs-12">
             <div class="col-md-12">
-                <h3> Paso 7</h3>
+                <h3> Paso 6</h3>
   
                 <table class="table">
                     <tr>
@@ -211,7 +212,29 @@
             </div>
         </div>
     </div>
+    <script>
+            mapboxgl.accessToken = "{{env('MAPBOX_ACCESS_TOKEN')}}";
+                const map = new mapboxgl.Map({
+                container: 'map', // container ID
+                style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                center: [{{$longitudeMap}}, {{$latitudeMap}}], // starting position [lng, lat]
+                zoom: 9, // starting zoom
+                projection: 'globe' // display the map as a 3D globe
+                });
+                map.on('style.load', () => {
+                map.setFog({}); // Set the default atmosphere style
+                const marker1 = new mapboxgl.Marker()
+                .setLngLat([{{$longitudeMap}}, {{$latitudeMap}}])
+                .addTo(map);
+            $(window).on('mapa', (e) => {
+                marker1.setLngLat([e.detail.longitudeMap, e.detail.latitudeMap])
+                .addTo(map);
+                map.setCenter([e.detail.longitudeMap ,e.detail.latitudeMap]);
+                map.zoomTo(9);
+                //console.log(e.detail.latitudeMap);
+                //console.log(e.detail.longitudeMap);
+                });
+            });
+    </script>
 </div>
-
-
 
