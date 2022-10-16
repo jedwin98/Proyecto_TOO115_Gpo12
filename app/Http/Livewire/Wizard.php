@@ -13,7 +13,7 @@ class Wizard extends Component
 {
     public $currentStep = 1;
     public $name, $amount, $description, $status = 1, $selectedPais="AF", $selectedCiudad=132722, $residencia, $calle, $numeroVivienda, $stock, $dato1, $dato2, $dato3, $dato4;
-    public $successMessage = '', $ciudades = null, $latitudeMap = 31.94509 , $longitudeMap = 65.5556;
+    public $successMessage = '', $ciudades = null, $latitudeMap = 31.94509 , $longitudeMap = 65.5556, $paises = null;
     
     /**
      * Write code on Method
@@ -29,12 +29,12 @@ class Wizard extends Component
         $dataMap = PositionStack::forward($ciudad_name_ini,['country'=>$this->selectedPais, 'limit'=>1]);
         $this->latitudeMap = $dataMap["data"][0]["latitude"];
         $this->longitudeMap = $dataMap["data"][0]["longitude"];
+        $this->paises = Pais::orderBy('nombreMin', 'Asc')->get();
     }
 
     public function render()
     {
-        $paises = Pais::orderBy('nombreMin', 'Asc')->get();
-        return view('livewire.wizard',['paises' => $paises]);
+        return view('livewire.wizard');
     }
     /**
      * Write code on Method
