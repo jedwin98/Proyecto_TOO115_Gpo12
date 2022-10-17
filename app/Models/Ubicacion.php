@@ -12,6 +12,13 @@ class Ubicacion extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'latitud',
+        'longitud',
+        'pais_iso',
+        'ciudad_id',
+    ];
+
     public function pais(){
         return $this->belongsTo(Pais::class);
     }

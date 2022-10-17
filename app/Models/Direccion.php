@@ -9,6 +9,12 @@ class Direccion extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'residencia',
+        'calle',
+        'num_vivienda',
+    ];
+
     public function datosPersonales(){
         return $this->hasMany(DatosPersonale::class);
     }

@@ -69,9 +69,9 @@
         <br>
             <div class="col">
                 <h3> Datos de residencia</h3>
-                <div class="form-group">
+                <div class="form-group" wire:ignore>
                     <label for="description">Pais</label><br/>
-                    <select class="form-control" id="pais" aria-label="Default select example" wire:model="selectedPais">
+                    <select class="form-control" id="pais" aria-label="Default select example" wire:model="selectedPais" style="width:100%;">
                         @foreach($paises as $pais)
                             <option value="{{$pais->iso}}">{{$pais->nombreMin}}</option>
                         @endforeach
@@ -110,6 +110,7 @@
             <br>
             <div class="col">
                 <div id='map' style='width: 400px; height: 300px;' wire:ignore></div>
+                <!-- <div id='map' class="container" wire:ignore></div> -->
             </div>
     </div>
     <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
@@ -213,28 +214,35 @@
         </div>
     </div>
     <script>
-            mapboxgl.accessToken = "{{env('MAPBOX_ACCESS_TOKEN')}}";
-                const map = new mapboxgl.Map({
-                container: 'map', // container ID
-                style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                center: [{{$longitudeMap}}, {{$latitudeMap}}], // starting position [lng, lat]
-                zoom: 9, // starting zoom
-                projection: 'globe' // display the map as a 3D globe
-                });
-                map.on('style.load', () => {
-                map.setFog({}); // Set the default atmosphere style
-                const marker1 = new mapboxgl.Marker()
-                .setLngLat([{{$longitudeMap}}, {{$latitudeMap}}])
-                .addTo(map);
-            $(window).on('mapa', (e) => {
-                marker1.setLngLat([e.detail.longitudeMap, e.detail.latitudeMap])
-                .addTo(map);
-                map.setCenter([e.detail.longitudeMap ,e.detail.latitudeMap]);
-                map.zoomTo(9);
-                //console.log(e.detail.latitudeMap);
-                //console.log(e.detail.longitudeMap);
-                });
+        document.addEventListener('livewire:load',function () {
+            $('#pais').select2();
+            $('#pais').select2().on('change', function () {
+                @this.set('selectedPais',this.value);
             });
+        });
+
+        mapboxgl.accessToken = "{{env('MAPBOX_ACCESS_TOKEN')}}";
+            const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            center: [{{$longitudeMap}}, {{$latitudeMap}}], // starting position [lng, lat]
+            zoom: 9, // starting zoom
+            projection: 'globe' // display the map as a 3D globe
+            });
+            map.on('style.load', () => {
+            map.setFog({}); // Set the default atmosphere style
+            const marker1 = new mapboxgl.Marker()
+            .setLngLat([{{$longitudeMap}}, {{$latitudeMap}}])
+            .addTo(map);
+        $(window).on('mapa', (e) => {
+            marker1.setLngLat([e.detail.longitudeMap, e.detail.latitudeMap])
+            .addTo(map);
+            map.setCenter([e.detail.longitudeMap ,e.detail.latitudeMap]);
+            map.zoomTo(9);
+            //console.log(e.detail.latitudeMap);
+            //console.log(e.detail.longitudeMap);
+            });
+        });
     </script>
 </div>
 

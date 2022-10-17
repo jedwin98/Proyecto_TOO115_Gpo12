@@ -20,6 +20,8 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+    <!-- sweet alert cdn -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Bootstrap js cdn -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     <!-- Mapbox js cdn -->  
@@ -37,9 +39,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            @role('administrador')
+                <a class="navbar-brand" href="/usuarios"><i class="fa-solid fa-users"></i> Gestion de usuarios</a>
+            @endrole        
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item">
+            @role('administrador|ejecutivo')
+                <a class="navbar-brand" href="/asociados"><i class="fa-solid fa-people-group"></i> Gestion de asociados</a>
+            @endrole        
+        </li>
+        <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown
             </a>
@@ -49,7 +58,7 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
             </div>
-        </li>
+        </li> -->
         </ul>
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav ms-auto">
@@ -91,6 +100,8 @@
     <!-- Page content-->
     @yield('contenido')
 
+
+    <script src="{{ asset('js/scripts2.js') }}"></script>
     @yield('scripts')    
 </body>
 </html>
