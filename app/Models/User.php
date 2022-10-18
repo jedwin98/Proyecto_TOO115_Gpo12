@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\SolicitudAsociado;
 use Spatie\Permission\Traits\HasRoles;
+use Mail;
+use App\Mail\SendCodeMail;
 
 class User extends Authenticatable
 {
@@ -46,5 +48,27 @@ class User extends Authenticatable
     ];
     public function solicitudAsociados(){
         return $this->hasMany(SolicitudAsociado::class);
+    }
+
+    public function generateCode()
+    {
+        $code = rand(1000, 9999);
+
+        UserCode::updateOrCreate(
+            [ 'user_id' => auth()->user()->id ],
+            [ 'code' => $code ]
+        );
+
+        try {
+            
+            $details = [
+                'title' => 'Correo recibido desde SistemaTOO115.com',
+                'code' => $code
+            ];
+
+            Mail::to(auth()->user()->email)->send(new SendCodeMail($details));
+        } catch (Exception $e) {
+            info("Error: ". $e->getMessage());
+        }
     }
 }

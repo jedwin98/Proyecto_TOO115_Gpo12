@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.plantilla')
 
-@section('content')
+@section('contenido')
+<br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header text-center"><i class="fa-solid fa-lock"></i> {{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -29,8 +30,12 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
+                                <div class="input-group">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <span class="input-group-btn">
+                                        <button id="eyebutton" class="btn btn-primary" type="button" onclick="mostrarContraseña();"><i class="fa-solid fa-eye-slash"></i></button>
+                                    </span>
+                                </div>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -70,4 +75,16 @@
         </div>
     </div>
 </div>
+<script>
+        function mostrarContraseña(){
+            var tipo = document.getElementById("password");
+            if(tipo.type == "password"){
+                tipo.type = "text";
+                $('#eyebutton').find("i").removeClass('fa-solid fa-eye-slash').addClass('fa-solid fa-eye');
+            } else{
+                tipo.type = "password";
+                $('#eyebutton').find("i").removeClass('fa-solid fa-eye').addClass('fa-solid fa-eye-slash');
+            }
+        }
+</script>
 @endsection

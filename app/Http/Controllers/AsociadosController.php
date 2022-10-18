@@ -8,6 +8,7 @@ use App\Models\Direccion;
 use App\Models\Ubicacion;
 use App\Models\Pais;
 use App\Models\Ciudad;
+use FilippoToso\PositionStack\Facade\PositionStack;
 
 use Auth;
 
@@ -86,6 +87,13 @@ class AsociadosController extends Controller
                 $Ubicacion = Ubicacion::findOrFail($ubicacionAsociado);
                 $Ubicacion->pais_iso = $Pais;
                 $Ubicacion->ciudad_id = $Ciudad;
+                $CiudadQuery = Ciudad::where('id','=',$Ciudad)->get();
+                foreach ($CiudadQuery as $ciudadu) {
+                    $ciudadName = $ciudadu->nombreCiudad;
+                }
+                $dataLatLon = PositionStack::forward($ciudadName,['country'=>$Pais, 'limit'=>1]);
+                $Ubicacion->latitud = $dataLatLon["data"][0]["latitude"];
+                $Ubicacion->longitud = $dataLatLon["data"][0]["longitude"];
                 $Ubicacion->save();
 
                 $Direccion = Direccion::findOrFail($direccionId);

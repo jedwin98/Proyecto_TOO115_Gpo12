@@ -48,11 +48,13 @@
 
             </select>
             <br>
+            <br>
             <label>Seleccione una ciudad</label>
             <br>
             <select class="form-select" aria-label="Default select example" name="idciudad" id="ciudadid">
 
             </select>
+            <br>
             <br>
             <label>Residencia</label>
             <input type="text" class="form-control" id="inputresidencia" name="residencia" required>
@@ -236,7 +238,7 @@ function consultarpaisesdatosresidencia(id){
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Hecho!.',
-                                    text: 'Se registro correctamente el expediente de ',
+                                    text: 'Se registro correctamente el asociado',
                                     confirmButtonText: 'Ok',
                                 })
                                 $("#editarDatosResidenciaModalCenter").modal("hide");
@@ -245,14 +247,14 @@ function consultarpaisesdatosresidencia(id){
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Ocurrio un error!.',
-                                    text: 'No se pudo registrar el expediente de ',
+                                    text: 'No se pudo registrar el asociado',
                                     confirmButtonText: 'Ok',
                                 })
                             }
                         }
                     });
             } else if (result.isDismissed) {
-                Swal.fire('Se cancelo el registro del expediente', '', 'info')
+                Swal.fire('Se cancelo el registro del asociado', '', 'info')
             }
             })
         }
