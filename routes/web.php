@@ -29,7 +29,9 @@ Route::match(['get','post'],'/', function () {
     return view('form');
 })->middleware('auth');
 
-Route::get('biometricos',[DatosBiometricosController::class,'index'])->name('biometricos.index');
+Route::get('/biometricos',[DatosBiometricosController::class,'index'])->name('biometricos.index');
+Route::post('/biometricos',[DatosBiometricosController::class,'store'])->name('biometricos.store');
+
 
 Route::get('/roles', [UsuariosController::class, 'roles'])->name('roles');
 
