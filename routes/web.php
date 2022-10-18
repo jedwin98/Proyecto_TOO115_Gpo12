@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DatosBiometricosController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\AsociadosController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,3 +41,11 @@ Route::post('/editar_usuario',[UsuariosController::class,'update'])->middleware(
 Route::post('/crear_usuario',[UsuariosController::class,'create'])->middleware('auth')->name('crear_usuario');
 Route::post('/eliminar_usuario',[UsuariosController::class,'destroy'])->middleware('auth')->name('eliminar_usuario');
 //Fin
+
+// Rutas de Gestion de Asociados
+Route::get('/asociados',[AsociadosController::class,'index'])->middleware('auth');
+Route::get('/asociados_data',[AsociadosController::class,'asociados_data'])->middleware('auth')->name('asociados_data');
+Route::get('/paisesconsultarajax',[AsociadosController::class,'paisesconsultarajax'])->middleware('auth')->name('paisesconsultarajax');
+Route::get('/ciudadesconsultarajax',[AsociadosController::class,'ciudadesconsultarajax'])->middleware('auth')->name('ciudadesconsultarajax');
+Route::post('/datos_residencia_editar',[AsociadosController::class,'datosResidenciaUpdate'])->middleware('auth')->name('datos_residencia_editar');
+//fin
