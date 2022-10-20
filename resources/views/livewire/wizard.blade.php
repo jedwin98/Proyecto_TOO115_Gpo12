@@ -108,9 +108,14 @@
                 <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(1)">Anterior</button>
             </div>
             <br>
-            <div class="col">
-                <div id='map' style='width: 400px; height: 300px;' wire:ignore></div>
-                <!-- <div id='map' class="container" wire:ignore></div> -->
+            <div class="col-md-5">
+            <br>
+                <div class="card">
+                    <div class="card-body">
+                        <div id='map' style='width: 100%; height: 300px;' wire:ignore></div>
+                    </div>
+                </div>
+                <!-- <div id='map' style='width: 400px; height: 300px;' wire:ignore></div> -->
             </div>
     </div>
     <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
