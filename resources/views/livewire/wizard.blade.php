@@ -73,7 +73,7 @@
                     <label for="description">Pais</label><br/>
                     <select class="form-control" id="pais" aria-label="Default select example" wire:model="selectedPais" style="width:100%;">
                         @foreach($paises as $pais)
-                            <option value="{{$pais->iso}}">{{$pais->nombreMin}}</option>
+                            <option value="{{$pais->iso}}">{{__($pais->nombreMin)}}</option>
                         @endforeach
                     </select>
                     @error('paises') <span class="error text-danger">{{ $message }}</span> @enderror

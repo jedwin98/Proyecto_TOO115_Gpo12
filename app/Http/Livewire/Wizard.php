@@ -139,7 +139,7 @@ class Wizard extends Component
 
         $this->successMessage = 'Registro de asociado completado correctamente.';
 
-        dd($this->selectedPais, $this->selectedCiudad, $this->residencia, $this->numeroVivienda, $ciudad_name, $data);
+        //dd($this->selectedPais, $this->selectedCiudad, $this->residencia, $this->numeroVivienda, $ciudad_name, $data);
   
         $this->clearForm();
   
