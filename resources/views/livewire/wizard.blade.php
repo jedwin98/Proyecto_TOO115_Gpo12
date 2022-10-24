@@ -121,7 +121,7 @@
     <div class="setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
         <div>
             <div>
-                <h3> Paso 3</h3>
+                <h3> Paso 3: Referencias</h3>
   
                 <div class="row">
                     <div class="col">
@@ -141,12 +141,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Teléfono</label><br/>
-                                <input type="text" class="form-control" wire:model="tel1">
+                                <input type="text" class="form-control" wire:model="tel1" placeholder="22222222" maxlength="8">
                                 @error('tel1') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="form-group">
                                 <label for="description">Email:</label><br/>
-                                <input type="text" class="form-control" wire:model="email1">
+                                <input type="text" class="form-control" wire:model="email1" placeholder="ejemplo@email.com">
                                 @error('email1') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                             </div>
@@ -162,12 +162,12 @@
                             </div>
                             <div class="form-group">
                             <label for="description">Teléfono</label><br/>
-                            <input type="text" class="form-control" wire:model="tel2">
+                            <input type="text" class="form-control" wire:model="tel2" placeholder="22222222" maxlength="8">
                             @error('tel2') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="form-group">
                             <label for="description">Email:</label><br/>
-                            <input type="text" class="form-control" wire:model="email2">
+                            <input type="text" class="form-control" wire:model="email2" placeholder="ejemplo@email.com">
                             @error('email2') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                             
@@ -197,12 +197,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Teléfono</label><br/>
-                                    <input type="text" class="form-control" wire:model="tel3">
+                                    <input type="text" class="form-control" wire:model="tel3" placeholder="22222222" maxlength="8">
                                     @error('tel3') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Email:</label><br/>
-                                    <input type="text" class="form-control" wire:model="email3">
+                                    <input type="text" class="form-control" wire:model="email3" placeholder="ejemplo@email.com">
                                     @error('email3') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 </div>
@@ -219,12 +219,12 @@
                                 </div>
                                 <div class="form-group">
                                 <label for="description">Teléfono</label><br/>
-                                <input type="text" class="form-control" wire:model="tel4">
+                                <input type="text" class="form-control" wire:model="tel4" placeholder="22222222" maxlength="8">
                                 @error('tel4') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group">
                                 <label for="description">Email:</label><br/>
-                                <input type="text" class="form-control" wire:model="email4">
+                                <input type="text" class="form-control" wire:model="email4" placeholder="ejemplo@email.com">
                                 @error('email4') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 </div>
@@ -244,15 +244,74 @@
             </div>
         </div>
     </div>
-    <div class="row setup-content {{ $currentStep != 4 ? 'displayNone' : '' }}" id="step-4">
-        <div class="col-xs-12">
-            <div class="col-md-12">
-                <h3> Paso 4</h3>
+    <div class="setup-content {{ $currentStep != 4 ? 'displayNone' : '' }}" id="step-4">
+        <div>
+            <div>
+                <h3> Paso 4: Beneficiarios</h3>
   
-                <div class="form-group">
-                    <label for="description">Dato 2</label>
-                    <input type="text" wire:model="dato2" class="form-control" id="dato2"/>
-                    @error('stock') <span class="error">{{ $message }}</span> @enderror
+                <div class="row">
+                    <div class="col">
+                        <div class="card-header">
+                        <h5>Beneficiario 1</h5>
+                        </div>
+                        <div class="card-body">
+                                                        
+                            <div class="form-group">
+                                    <label for="description">Nombre:</label><br/>
+                                    <input type="text" class="form-control" wire:model="nomb1">
+                                    @error('nomb1') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Edad:</label><br/>
+                                <input type="text" class="form-control" wire:model="ed1">
+                                @error('ed1') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Parentezco:</label><br/>
+                                <input type="text" class="form-control" wire:model="paren1" placeholder="Ejemplo: Padre, Madre, etc">
+                                @error('paren1') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Porcentaje de paretezco:</label><br/>
+                                <input type="number" class="form-control" wire:model="porcen1" step="0.1" min="0.0" max="100">
+                                @error('porcen1') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            
+                    
+                        </div>
+                     
+                    </div>
+                    <div class="col">
+                        <div class="card-header">
+                            <h5>Beneficiario 2</h5>
+                            </div>
+                            <div class="card-body">
+                        
+                    
+                            <div class="form-group">
+                                    <label for="description">Nombre:</label><br/>
+                                    <input type="text" class="form-control" wire:model="nomb2">
+                                    @error('nomb2') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Edad:</label><br/>
+                                <input type="text" class="form-control" wire:model="ed2">
+                                @error('ed2') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Parentezco:</label><br/>
+                                <input type="text" class="form-control" wire:model="paren2" placeholder="Ejemplo: Padre, Madre, etc">
+                                @error('paren2') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Porcentaje de paretezco:</label><br/>
+                                <input type="number" class="form-control" wire:model="porcen2" step="0.1" min="0.0" max="100">
+                                @error('porcen2') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+             
+                            </div>
+                            
+                    </div>
                 </div>
   
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="fourthStepSubmit">Siguiente</button>
