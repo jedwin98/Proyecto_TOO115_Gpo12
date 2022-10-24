@@ -9,6 +9,10 @@ class Empresario extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'rubro',
+        'capacidad_pago',
+    ];
     public function asociado(){
         return $this->belongsTo(Asociado::class);
     }

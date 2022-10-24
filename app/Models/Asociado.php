@@ -17,6 +17,11 @@ class Asociado extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'profesion',
+        'lugar_trabajo',
+        'salario',
+    ];
 
     public function datosPersonales(){
         return $this->belongsTo(DatosPersonale::class);

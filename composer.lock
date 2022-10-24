@@ -3059,16 +3059,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "5.5.5",
+            "version": "5.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "f2303a70be60919811ca8afc313e8244fda00974"
+                "reference": "882e501e7ea4a92c70884d8f1dd2549a1c87d77c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/f2303a70be60919811ca8afc313e8244fda00974",
-                "reference": "f2303a70be60919811ca8afc313e8244fda00974",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/882e501e7ea4a92c70884d8f1dd2549a1c87d77c",
+                "reference": "882e501e7ea4a92c70884d8f1dd2549a1c87d77c",
                 "shasum": ""
             },
             "require": {
@@ -3129,7 +3129,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-permission/issues",
-                "source": "https://github.com/spatie/laravel-permission/tree/5.5.5"
+                "source": "https://github.com/spatie/laravel-permission/tree/5.5.11"
             },
             "funding": [
                 {
@@ -3137,7 +3137,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-06-29T23:11:42+00:00"
+            "time": "2022-10-19T16:00:01+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

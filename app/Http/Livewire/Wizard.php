@@ -14,6 +14,7 @@ class Wizard extends Component
     public $currentStep = 1;
     public $name, $amount, $description, $status = 1, $selectedPais="AF", $selectedCiudad=132722, $residencia, $calle, $numeroVivienda, $stock, $dato1, $dato2, $dato3, $dato4;
     public $successMessage = '', $ciudades = null, $latitudeMap = 31.94509 , $longitudeMap = 65.5556, $paises = null;
+    public $profesion, $lugar_trabajo, $salario, $rubroE, $capacidad_pagoE;
     
     /**
      * Write code on Method
@@ -91,7 +92,9 @@ class Wizard extends Component
     public function fifthStepSubmit()
     {
         $validatedData = $this->validate([
-            'dato3' => 'required',
+            'profesion' => 'required',
+            'lugar_trabajo' => 'required',
+            'salario' => 'required',
         ]);
   
         $this->currentStep = 6;
@@ -121,6 +124,12 @@ class Wizard extends Component
         }
 
         $data = PositionStack::forward($ciudad_name,['country'=>$this->selectedPais, 'limit'=>1]);
+
+        $asociado = new Asociado();
+        $asociado->profesion = $this->profesion;
+        $asociado->lugar_trabajo = $this->lugar_trabajo;
+        $asociado->salario = $this->salario;
+        $asociado->save();
 
         $ubicacion = new Ubicacion();
         $ubicacion->latitud = $data["data"][0]["latitude"];

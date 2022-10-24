@@ -146,16 +146,40 @@
         </div>
     </div>
     <div class="row setup-content {{ $currentStep != 5 ? 'displayNone' : '' }}" id="step-5">
-        <div class="col-xs-12">
-            <div class="col-md-12">
-                <h3> Paso 5</h3>
-  
-                <div class="form-group">
-                    <label for="description">Dato 3</label>
-                    <input type="text" wire:model="dato3" class="form-control" id="dato3"/>
-                    @error('stock') <span class="error">{{ $message }}</span> @enderror
+        <div class="col-xs-6">
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    <h3> Datos financieros</h3>
+
+                    <div class="form-group">
+                        <label for="description">Profesión:</label>
+                        <input type="text" wire:model="profesion" class="form-control" id="profesion"/>
+                        @error('stock') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Lugar de trabajo:</label>
+                        <input type="text" wire:model="lugar_trabajo" class="form-control" id="lugar_trabajo"/>
+                        @error('stock') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Salario:</label>
+                        <input type="number" wire:model="salario" class="form-control" id="salario"/>
+                        @error('stock') <span class="error">{{ $message }}</span> @enderror
+                    </div>
                 </div>
-  
+                <div class="col-md-12">
+                    <button class="btn btn-secondary">Ingresar datos de empresa</button>
+                    <div class="form-group">
+                        <label for="empresarial" class="empresarial">Rubro de la empresa:</label>
+                        <input type="text" wire:model="rubroE" class="form-control empresarial" id="rubroE"></input>
+                    </div>
+                    <div class="form-group">
+                        <label for="empresarial" class="empresarial">Capacidad de pago:</label>
+                        <input type="number" wire:model="capacidad_pagoE" class="form-control empresarial" id="capacidad_pagoE"></input>
+                    </div>
+                </div>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="fifthStepSubmit">Siguiente</button>
                 <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(4)">Anterior</button>
             </div>
