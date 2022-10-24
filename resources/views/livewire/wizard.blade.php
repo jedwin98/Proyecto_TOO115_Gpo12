@@ -118,16 +118,126 @@
                 <!-- <div id='map' style='width: 400px; height: 300px;' wire:ignore></div> -->
             </div>
     </div>
-    <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
-        <div class="col-xs-12">
-            <div class="col-md-12">
+    <div class="setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
+        <div>
+            <div>
                 <h3> Paso 3</h3>
   
-                <div class="form-group">
-                    <label for="description">Dato 1</label>
-                    <input type="text" wire:model="dato1" class="form-control" id="dato1"/>
-                    @error('stock') <span class="error">{{ $message }}</span> @enderror
+                <div class="row">
+                    <div class="col">
+                        <div class="card-header">
+                        <h5>Referencias personales</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-header">
+                                <h5>Referencia personal 1</h5>
+                                </div>
+                                <div class="card-body">
+                            
+                            <div class="form-group">
+                                    <label for="description">Nombre:</label><br/>
+                                    <input type="text" class="form-control" wire:model="nom1">
+                                    @error('nom1') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Teléfono</label><br/>
+                                <input type="text" class="form-control" wire:model="tel1">
+                                @error('tel1') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Email:</label><br/>
+                                <input type="text" class="form-control" wire:model="email1">
+                                @error('email1') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            </div>
+                            <div class="card-header">
+                                <h5>Referencia personal 2</h5>
+                            </div>
+                                <div class="card-body">
+
+                            <div class="form-group">
+                                <label for="description">Nombre:</label><br/>
+                                <input type="text" class="form-control" wire:model="nom2">
+                                @error('nom2') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                            <label for="description">Teléfono</label><br/>
+                            <input type="text" class="form-control" wire:model="tel2">
+                            @error('tel2') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                            <label for="description">Email:</label><br/>
+                            <input type="text" class="form-control" wire:model="email2">
+                            @error('email2') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            
+                            </div>
+                        
+
+                            
+                            <br/> 
+                        </div>
+                     
+                    </div>
+                    <div class="col">
+                        <div class="card-header">
+                            <h5>Referencias laborales</h5>
+                            </div>
+                            <div class="card-body">
+                        
+                                <div class="card-header">
+                                    <h5>Referencia laboral 1</h5>
+                                    </div>
+                                    <div class="card-body">
+                                
+                                <div class="form-group">
+                                        <label for="description">Nombre:</label><br/>
+                                        <input type="text" class="form-control" wire:model="nom3">
+                                        @error('nom3') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Teléfono</label><br/>
+                                    <input type="text" class="form-control" wire:model="tel3">
+                                    @error('tel3') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Email:</label><br/>
+                                    <input type="text" class="form-control" wire:model="email3">
+                                    @error('email3') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                </div>
+
+                                
+                                <div class="card-header">
+                                    <h5>Referencia laboral 2</h5>
+                                    </div>
+                                    <div class="card-body">
+                                <div class="form-group">
+                                    <label for="description">Nombre:</label><br/>
+                                    <input type="text" class="form-control" wire:model="nom4">
+                                    @error('nom4') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="form-group">
+                                <label for="description">Teléfono</label><br/>
+                                <input type="text" class="form-control" wire:model="tel4">
+                                @error('tel4') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="form-group">
+                                <label for="description">Email:</label><br/>
+                                <input type="text" class="form-control" wire:model="email4">
+                                @error('email4') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                </div>
+    
+                                
+                                <br/> 
+                            </div>
+                            
+                    </div>
                 </div>
+
+                    
+            
   
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="thirdStepSubmit">Siguiente</button>
                 <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(2)">Anterior</button>

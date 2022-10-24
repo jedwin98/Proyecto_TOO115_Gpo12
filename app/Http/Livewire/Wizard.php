@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Ciudad;
 use App\Models\Pais;
 use App\Models\Direccion;
+use App\Models\Referencia;
 use App\Models\Ubicacion;
 use FilippoToso\PositionStack\Facade\PositionStack;
 use Livewire\Component;
@@ -69,11 +70,22 @@ class Wizard extends Component
   
         $this->currentStep = 3;
     }
-    
+    //formulario de referencias personales
     public function thirdStepSubmit()
     {
         $validatedData = $this->validate([
-            'dato1' => 'required',
+            'nom1' => 'required',
+            'tel1' => 'required',
+            'email1' => 'required',
+            'nom2' => 'required',
+            'tel2' => 'required',
+            'email2' => 'required',
+            'nom3' => 'required',
+            'tel3' => 'required',
+            'email3' => 'required',
+            'nom4' => 'required',
+            'tel4' => 'required',
+            'email4' => 'required',
         ]);
   
         $this->currentStep = 4;
@@ -135,7 +147,39 @@ class Wizard extends Component
         $direccion->num_vivienda = $this->numeroVivienda;
         $direccion->save();
         
-        //fin codigo
+
+        //form felix
+
+        //form referencias personales y laborales
+        $ref1= new Referencia();
+        $ref1->nombre_referencia= $this->nom1;
+        $ref1->telefono_referencia= $this->tel1;
+        $ref1->correo_referencia= $this->email1;
+        $ref1->tipo_referencia= "Personal";
+       // $ref1->asociado_id= asociado de felix;
+       $ref2= new Referencia();
+       $ref2->nombre_referencia= $this->nom2;
+       $ref2->telefono_referencia= $this->tel2;
+       $ref2->correo_referencia= $this->email2;
+       $ref2->tipo_referencia= "Personal";
+      // $ref1->asociado_id= asociado de felix;
+      $ref3= new Referencia();
+        $ref3->nombre_referencia= $this->nom3;
+        $ref3->telefono_referencia= $this->tel3;
+        $ref3->correo_referencia= $this->email3;
+        $ref3->tipo_referencia= "Laboral";
+       // $ref1->asociado_id= asociado de felix;
+       $ref4= new Referencia();
+        $ref4->nombre_referencia= $this->nom4;
+        $ref4->telefono_referencia= $this->tel4;
+        $ref4->correo_referencia= $this->email4;
+        $ref4->tipo_referencia= "Laboral";
+       // $ref1->asociado_id= asociado de felix;
+       
+       
+       
+       
+       //fin codigo
 
         $this->successMessage = 'Registro de asociado completado correctamente.';
 
