@@ -267,9 +267,18 @@ class Wizard extends Component
             foreach ($paiseQuery as $paisQuery) {
                 $pais_name = $paisQuery->nombreMin;
             }
-            $dataMap = PositionStack::forward($pais_name,['country'=>$this->selectedPais, 'limit'=>1]);
-            $this->latitudeMap = $dataMap["data"][0]["latitude"];
-            $this->longitudeMap = $dataMap["data"][0]["longitude"];
+            try {//pais encontrado
+                $dataMap = PositionStack::forward($pais_name,['country'=>$this->selectedPais, 'limit'=>1]);
+                $this->latitudeMap = $dataMap["data"][0]["latitude"];
+                $this->longitudeMap = $dataMap["data"][0]["longitude"];
+            } catch (\Throwable $th) {//el resultado de la api no tiene el iso del pais, buscar sin el parametro opcional de pais
+                $dataMap = PositionStack::forward($pais_name,['limit'=>1]);
+                $this->latitudeMap = $dataMap["data"][0]["latitude"];
+                $this->longitudeMap = $dataMap["data"][0]["longitude"];
+            }
+            // $dataMap = PositionStack::forward($pais_name,['country'=>$this->selectedPais, 'limit'=>1]);
+            // $this->latitudeMap = $dataMap["data"][0]["latitude"];
+            // $this->longitudeMap = $dataMap["data"][0]["longitude"];
             //dd($pais_name,$this->latitudeMap,$this->longitudeMap);
             $this->dispatchBrowserEvent('mapa', ['latitudeMap'=>$this->latitudeMap, 'longitudeMap'=>$this->longitudeMap]);
         }
