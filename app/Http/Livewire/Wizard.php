@@ -114,7 +114,8 @@ class Wizard extends Component
         $validatedData = $this->validate([
             'profesion' => 'required',
             'lugar_trabajo' => 'required',
-            'salario' => 'required',
+            'salario' => 'required|numeric',
+            'capacidad_pagoE' => 'numeric',
         ]);
   
         $this->currentStep = 6;
@@ -150,6 +151,14 @@ class Wizard extends Component
         $asociado->lugar_trabajo = $this->lugar_trabajo;
         $asociado->salario = $this->salario;
         $asociado->save();
+
+        $output = new Symfony\Component\Console\Output\ConsoleOutput();
+        if (!(empty($this->rubroE) || $this->capacidad_pagoE == 0) ){
+            
+            $output->writeln("Escribiste algo we :v");
+        } else {
+            $output->writeln("Ignorado como siempre :'v");
+        }
 
         $ubicacion = new Ubicacion();
         $ubicacion->latitud = $data["data"][0]["latitude"];

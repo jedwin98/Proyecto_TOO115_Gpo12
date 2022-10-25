@@ -320,9 +320,9 @@
         </div>
     </div>
     <div class="row setup-content {{ $currentStep != 5 ? 'displayNone' : '' }}" id="step-5">
-        <div class="col-xs-6">
-            <div class="col-md-6">
-                <div class="col-md-12">
+        <div>
+            <div class="row">
+                <div class="col">
                     <h3> Datos financieros</h3>
 
                     <div class="form-group">
@@ -343,15 +343,15 @@
                         @error('stock') <span class="error">{{ $message }}</span> @enderror
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <button class="btn btn-secondary">Ingresar datos de empresa</button>
+                <div class="col">
+                    <button class="btn btn-secondary" onclick="togglePress()">Ingresar datos de empresa</button>
                     <div class="form-group">
-                        <label for="empresarial" class="empresarial">Rubro de la empresa:</label>
-                        <input type="text" wire:model="rubroE" class="form-control empresarial" id="rubroE"></input>
+                        <label for="empresarial" class="empresarial" style="display:none;">Rubro de la empresa:</label>
+                        <input type="text" wire:model="rubroE" class="form-control empresarial" id="rubroE" style="display:none;"></input>
                     </div>
                     <div class="form-group">
-                        <label for="empresarial" class="empresarial">Capacidad de pago:</label>
-                        <input type="number" wire:model="capacidad_pagoE" class="form-control empresarial" id="capacidad_pagoE"></input>
+                        <label for="empresarial" class="empresarial" style="display:none;">Capacidad de pago:</label>
+                        <input type="number" wire:model="capacidad_pagoE" class="form-control empresarial" id="capacidad_pagoE" style="display:none;"></input>
                     </div>
                 </div>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="fifthStepSubmit">Siguiente</button>
@@ -441,6 +441,37 @@
             //console.log(e.detail.longitudeMap);
             });
         });
+
+        function togglePress(){
+            let toggles = Array.from(document.getElementsByClassName("empresarial"));
+            labels = document.getElementsByTagName("label");
+            for (var i = 0; i < labels.length; i++){
+                if (labels[i].htmlFor == "empresarial"){
+                    if (labels[i].style.display == "initial"){
+                        labels[i].style.display = "none";
+                    } else {
+                        labels[i].style.display = "initial";
+                    }
+                }
+            }
+            toggles.forEach(toggle);
+        }
+
+        function toggle(item, index){
+            console.log(item.type)
+            if (!(item.style.display == "none")){
+                if (item.type == "text"){
+                    item.value = "";
+                    item.style.display = "none";
+                }
+                if (item.type == "number"){
+                    item.value = '0';
+                    item.style.display = "none";
+                }
+            } else {
+                item.style.display = "initial";
+            }
+        }
     </script>
 </div>
 
