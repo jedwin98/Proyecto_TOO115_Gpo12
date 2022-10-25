@@ -16,6 +16,7 @@ class Wizard extends Component
     public $currentStep = 1;
     public $name, $amount, $description, $status = 1, $selectedPais="AF", $selectedCiudad=132722, $residencia, $calle, $numeroVivienda, $stock, $dato1, $dato2, $dato3, $dato4,$nom1,$nom2,$nom3,$nom4, $tel1, $tel2, $tel3, $tel4, $email1, $email2, $email3, $email4, $nomb1, $nomb2, $ed1, $ed2, $paren1, $paren2, $porcen1, $porcen2;
     public $successMessage = '', $ciudades = null, $latitudeMap = 31.94509 , $longitudeMap = 65.5556, $paises = null;
+    public $profesion, $lugar_trabajo, $salario, $rubroE, $capacidad_pagoE;
     
     /**
      * Write code on Method
@@ -111,7 +112,10 @@ class Wizard extends Component
     public function fifthStepSubmit()
     {
         $validatedData = $this->validate([
-            'dato3' => 'required',
+            'profesion' => 'required',
+            'lugar_trabajo' => 'required',
+            'salario' => 'required|numeric',
+            'capacidad_pagoE' => 'numeric',
         ]);
   
         $this->currentStep = 6;
@@ -141,6 +145,20 @@ class Wizard extends Component
         }
 
         $data = PositionStack::forward($ciudad_name,['country'=>$this->selectedPais, 'limit'=>1]);
+
+        $asociado = new Asociado();
+        $asociado->profesion = $this->profesion;
+        $asociado->lugar_trabajo = $this->lugar_trabajo;
+        $asociado->salario = $this->salario;
+        $asociado->save();
+
+        $output = new Symfony\Component\Console\Output\ConsoleOutput();
+        if (!(empty($this->rubroE) || $this->capacidad_pagoE == 0) ){
+            
+            $output->writeln("Escribiste algo we :v");
+        } else {
+            $output->writeln("Ignorado como siempre :'v");
+        }
 
         $ubicacion = new Ubicacion();
         $ubicacion->latitud = $data["data"][0]["latitude"];
