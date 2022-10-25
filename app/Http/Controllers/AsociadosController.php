@@ -39,15 +39,15 @@ class AsociadosController extends Controller
         $paises = Pais::select('iso','nombreMin')->orderBy('nombreMin')->get();
         $datosPersonales = DatosPersonale::where('id','=',request('asociadoId'))->get();
         foreach ($datosPersonales as $datoPersonal) {
-            $selectedPais = $datoPersonal->pais_iso;
             $selectedUbicacion = $datoPersonal->ubicacions_id;
             $selectedDireccion = $datoPersonal->direccion_id;
         }
         $ubicacionIni = Ubicacion::where('id','=',$selectedUbicacion)->get();
         foreach ($ubicacionIni as $ubi) {
             $ubiIni = $ubi->pais_iso;
+            $ciudadSelected = $ubi->ciudad_id;
         }
-        $ciudadesWPaisSelected = Ciudad::where('pais_iso','=',$selectedPais)->orderBy('nombreCiudad')->get();
+        $ciudadesWPaisSelected = Ciudad::where('pais_iso','=',$ubiIni)->orderBy('nombreCiudad')->get();
         
         $direccionIni = Direccion::where('id','=',$selectedDireccion)->get();
         foreach ($direccionIni as $dir) {
@@ -56,7 +56,7 @@ class AsociadosController extends Controller
             $numviv = $dir->num_vivienda;
         }
 
-        return response()->json(['paises' => $paises, 'datosPersonales' => $datosPersonales, 'ciudadesIni' => $ciudadesWPaisSelected, 'paisIni' => $ubiIni, 'residencia' => $resid, 'calle' => $call, 'vivienda' => $numviv]);
+        return response()->json(['paises' => $paises, 'datosPersonales' => $datosPersonales, 'ciudadesIni' => $ciudadesWPaisSelected, 'ciudadSelected' => $ciudadSelected, 'paisIni' => $ubiIni, 'residencia' => $resid, 'calle' => $call, 'vivienda' => $numviv]);
     }
 
     public function ciudadesconsultarajax(){

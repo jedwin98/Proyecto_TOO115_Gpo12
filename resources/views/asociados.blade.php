@@ -169,6 +169,12 @@ function consultarpaisesdatosresidencia(id){
                     success: function(test){
                         //console.log(test);
                         //console.log("legth "+test.paises.length);
+                        for (var j = comboPaises.options.length; j >= 0; j--) {
+                            comboPaises.remove(j);
+                        }
+                        for (var j = comboCiudades.options.length; j >= 0; j--) {
+                            comboCiudades.remove(j);
+                        }
                         for (var i = 0; i < test.paises.length; i++) {
                             const option = document.createElement('option');
                             const valornombre = test.paises[i].nombreMin;
@@ -178,7 +184,6 @@ function consultarpaisesdatosresidencia(id){
                             comboPaises.appendChild(option);
                         }
                         //comboPaises.value=test.datosPersonales[0].pais_iso;
-                        comboPaises.value=test.paisIni;
                         document.getElementById("inputresidencia").value = test.residencia;
                         document.getElementById("inputcalle").value = test.calle;
                         document.getElementById("inputnumvivienda").value = test.vivienda;
@@ -191,6 +196,8 @@ function consultarpaisesdatosresidencia(id){
                             option.text = valornombre;
                             comboCiudades.appendChild(option);
                         }
+                        comboPaises.value=test.paisIni;
+                        comboCiudades.value=test.ciudadSelected;
                     }
     });
      //js para envio por ajax para la ventana de expediente
