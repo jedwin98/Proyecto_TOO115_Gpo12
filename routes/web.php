@@ -3,6 +3,7 @@
 use App\Http\Controllers\DatosBiometricosController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\AsociadosController;
+use App\Http\Controllers\SolicitudesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TwoFAController;
@@ -40,6 +41,8 @@ Route::match(['get','post'],'/', function () {
 Route::get('/biometricos',[DatosBiometricosController::class,'index'])->name('biometricos.index');
 Route::post('/biometricos',[DatosBiometricosController::class,'store'])->name('biometricos.store');
 
+Route::get('/solicitudes', [SolicitudesController::class, 'index'])->name('solicitudes.index');
+Route::get('/solicitudes/{solicitud}', [SolicitudesController::class, 'show'])->name('solicitudes.show');
 
 Route::get('/roles', [UsuariosController::class, 'roles'])->name('roles');
 
