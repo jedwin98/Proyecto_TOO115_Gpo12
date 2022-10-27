@@ -87,7 +87,7 @@ class Wizard extends Component
             'calle' => 'required',
             'numeroVivienda' => 'required',
         ]);
-  
+
         $this->currentStep = 3;
     }
     //formulario de referencias personales
@@ -273,8 +273,6 @@ class Wizard extends Component
        //fin codigo
 
         $this->successMessage = 'Registro de asociado completado correctamente.';
-
-        //dd($this->selectedPais, $this->selectedCiudad, $this->residencia, $this->numeroVivienda, $ciudad_name, $data);
   
         $this->clearForm();
   
@@ -308,6 +306,8 @@ class Wizard extends Component
 
     public function updatedselectedPais($iso){
         $this->ciudades = Ciudad::where('pais_iso','=',$iso)->orderBy('nombreCiudad', 'Asc')->get();
+        $this->selectedCiudad = $this->ciudades->first()->id; //poner en la variable el valor de la primera ciudad, ya que la variable no se actualiza si se deja la primera ciudad seleccionada
+        //dd($this->selectedCiudad);
         // $paiseQuery = Pais::where('iso','=',$iso)->get();
         // $pais_name = null;
         // foreach ($paiseQuery as $paisQuery) {

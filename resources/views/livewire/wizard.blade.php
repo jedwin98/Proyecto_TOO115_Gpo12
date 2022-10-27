@@ -502,7 +502,7 @@
                 </table>
   
                 <button class="btn btn-success btn-lg pull-right" wire:click="submitForm" type="button">Terminar</button>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(6)">Anterior</button>
+                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(5)">Anterior</button>
             </div>
         </div>
     </div>
