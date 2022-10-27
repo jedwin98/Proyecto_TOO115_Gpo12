@@ -2,13 +2,19 @@
   
 namespace App\Http\Livewire;
 
+use App\Models\Asociado;
 use App\Models\Beneficiario;
 use App\Models\Ciudad;
+use App\Models\DatosPersonale;
 use App\Models\Pais;
 use App\Models\Direccion;
+use App\Models\Genero;
 use App\Models\Referencia;
+use App\Models\SolicitudAsociado;
+use App\Models\TipoDocumento;
 use App\Models\Ubicacion;
 use FilippoToso\PositionStack\Facade\PositionStack;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
   
 class Wizard extends Component
@@ -17,6 +23,8 @@ class Wizard extends Component
     public $name, $amount, $description, $status = 1, $selectedPais="AF", $selectedCiudad=132722, $residencia, $calle, $numeroVivienda, $stock, $dato1, $dato2, $dato3, $dato4,$nom1,$nom2,$nom3,$nom4, $tel1, $tel2, $tel3, $tel4, $email1, $email2, $email3, $email4, $nomb1, $nomb2, $ed1, $ed2, $paren1, $paren2, $porcen1, $porcen2;
     public $successMessage = '', $ciudades = null, $latitudeMap = 31.94509 , $longitudeMap = 65.5556, $paises = null;
     public $profesion, $lugar_trabajo, $salario, $rubroE, $capacidad_pagoE;
+    public $nombre1, $nombre2, $nombre3, $apellido1, $apellido2, $generos, $selectedGenero="1", $fecha_nac, $documentos,$selectedDoc="1", $num_doc, $nit=null, $nup=null, $isss=null, $estados, $selectedEstado="1", $conyu=null;
+
     
     /**
      * Write code on Method
@@ -33,6 +41,8 @@ class Wizard extends Component
         $this->latitudeMap = $dataMap["data"][0]["latitude"];
         $this->longitudeMap = $dataMap["data"][0]["longitude"];
         $this->paises = Pais::orderBy('nombreMin', 'Asc')->get();
+        $this->generos=Genero::all();
+        $this->documentos=TipoDocumento::all();
     }
 
     public function render()
@@ -47,9 +57,17 @@ class Wizard extends Component
     public function firstStepSubmit()
     {
         $validatedData = $this->validate([
-            'name' => 'required',
-            'amount' => 'required|numeric',
-            'description' => 'required',
+            'nombre1' => 'required',
+            'nombre2' => 'required',
+            'apellido1' => 'required',
+            'apellido2' => 'required',
+            'selectedGenero' => 'required',
+            'selectedDoc' => 'required',
+            'selectedEstado' => 'required',
+            'fecha_nac' => 'required',
+            'num_doc' => 'required',
+            
+            
         ]);
  
         $this->currentStep = 2;
@@ -174,33 +192,38 @@ class Wizard extends Component
         $direccion->save();
         
 
-        //form felix
-
         //form referencias personales y laborales
         $ref1= new Referencia();
         $ref1->nombre_referencia= $this->nom1;
         $ref1->telefono_referencia= $this->tel1;
         $ref1->correo_referencia= $this->email1;
         $ref1->tipo_referencia= "Personal";
-       // $ref1->asociado_id= asociado de felix;
+       $ref1->asociado_id= $asociado->id;
+       $ref1->save();
+
        $ref2= new Referencia();
        $ref2->nombre_referencia= $this->nom2;
        $ref2->telefono_referencia= $this->tel2;
        $ref2->correo_referencia= $this->email2;
        $ref2->tipo_referencia= "Personal";
-      // $ref1->asociado_id= asociado de felix;
-      $ref3= new Referencia();
+       $ref2->asociado_id= $asociado->id;
+       $ref2->save();
+      
+       $ref3= new Referencia();
         $ref3->nombre_referencia= $this->nom3;
         $ref3->telefono_referencia= $this->tel3;
         $ref3->correo_referencia= $this->email3;
         $ref3->tipo_referencia= "Laboral";
-       // $ref1->asociado_id= asociado de felix;
+        $ref3->asociado_id= $asociado->id;
+        $ref3->save();
+
        $ref4= new Referencia();
         $ref4->nombre_referencia= $this->nom4;
         $ref4->telefono_referencia= $this->tel4;
         $ref4->correo_referencia= $this->email4;
         $ref4->tipo_referencia= "Laboral";
-       // $ref1->asociado_id= asociado de felix;
+       $ref4->asociado_id= $asociado->id;
+       $ref4->save();
 
        //formulario de beneficiarios
        $bene1=new Beneficiario();
@@ -208,16 +231,44 @@ class Wizard extends Component
        $bene1->edad_beneficiario=$this->ed1;
        $bene1->parentezco=$this->paren1;
        $bene1->porcentaje_beneficiario=$this->porcen1;
-       //$bene1->asociado_id= asociado de felix;
+       $bene1->asociado_id= $asociado->id;;
+       $bene1->save();
 
        $bene2=new Beneficiario();
        $bene2->nombre_beneficiario=$this->nomb2;
        $bene2->edad_beneficiario=$this->ed2;
        $bene2->parentezco=$this->paren2;
        $bene2->porcentaje_beneficiario=$this->porcen2;
-       //$bene2->asociado_id= asociado de felix;
-       
-       
+       $bene2->asociado_id=$asociado->id;
+       $bene2->save();
+       //datos personales
+       $datos=new DatosPersonale();
+       $datos->nombre1=$this->nombre1;
+       $datos->nombre2=$this->nombre2;
+       $datos->nombre3=$this->nombre3;
+       $datos->apellido1=$this->apellido1;
+       $datos->apellido2=$this->apellido2;
+       $datos->fecha_nacimiento=$this->fecha_nac;
+       $datos->numero_documento=$this->num_doc;
+       $datos->estado_civil=$this->selectedEstado;
+       $datos->conyugue=$this->conyu;
+       $datos->tipo_documento_id=$this->selectedDoc;
+       $datos->genero_id=$this->selectedGenero;
+       $datos->pdf_nit=$this->nit; 
+       $datos->pdf_isss=$this->isss;
+       $datos->pdf_nup=$this->nup;
+       $datos->pais_iso=$this->selectedPais;
+       $datos->direccion_id=$direccion->id;
+       $datos->ubicacions_id=$ubicacion->id;
+       $datos->save();
+       //creando la solicitud
+       $solicitud= new SolicitudAsociado();
+       $solicitud->estado_solicitud="Pendiente";
+       $solicitud->ubicacion_id=$ubicacion->id;
+       $solicitud->datos_personales_id=$datos->id;
+       $solicitud->espacio_reservado_id=1;
+       $solicitud->user_id=Auth::id();
+       $solicitud->save();
        
        //fin codigo
 

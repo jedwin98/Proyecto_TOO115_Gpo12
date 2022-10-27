@@ -39,27 +39,122 @@
     </div>
 </div>
     
-    <div class="row setup-content {{ $currentStep != 1 ? 'displayNone' : '' }}" id="step-1">
-        <div class="col-xs-12">
-            <div class="col-md-12">
-                <h3> Paso 1</h3>
+    <div class="setup-content {{ $currentStep != 1 ? 'displayNone' : '' }}" id="step-1">
+        <div>
+            <div>
+                <h3> Paso 1: Datos Personales</h3>
   
-                <div class="form-group">
-                    <label for="title">Product Name:</label>
-                    <input type="text" wire:model="name" class="form-control" id="taskTitle">
-                    @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
-                </div>
-                <div class="form-group">
-                    <label for="description">Product Amount:</label>
-                    <input type="text" wire:model="amount" class="form-control" id="productAmount"/>
-                    @error('amount') <span class="error text-danger">{{ $message }}</span> @enderror
+                <div class="row">
+                    <div class="col">
+                        
+                                                        
+                            <div class="form-group">
+                                    <label for="description">Nombre 1:</label><br/>
+                                    <input type="text" class="form-control" wire:model="nombre1">
+                                    @error('nombre1') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Nombre 2:</label><br/>
+                                <input type="text" class="form-control" wire:model="nombre2">
+                                @error('nombre2') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Nombre 3:</label><br/>
+                                <input type="text" class="form-control" wire:model="nombre3">
+                                @error('nombre3') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">apellido 1:</label><br/>
+                                <input type="text" class="form-control" wire:model="apellido1">
+                                @error('apellido1') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">apellido 2:</label><br/>
+                                <input type="text" class="form-control" wire:model="apellido2">
+                                @error('apellido2') <span class="error text-danger">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="form-group">
+                            <label for="description">Genero:</label><br/>
+                        
+                    <select class="form-control" id="genero" aria-label="Default select example" wire:model="selectedGenero" style="width:100%;">
+                        @foreach($generos as $genero)
+                            <option value="{{$genero->id}}">{{__($genero->nombre_genero)}}</option>
+                        @endforeach
+                    </select>
+                    @error('generos') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Fecha de Nacimiento:</label><br/>
+                        <input type="date" class="form-control" wire:model="fecha_nac">
+                        @error('fecha_nac') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+
+
+
+                    </div>
+                    <div class="col">
+                        
+                        <div class="form-group">
+                            <label for="description">Tipo de documento de identidad:</label><br/>
+                            <select class="form-control" id="documento" aria-label="Default select example" wire:model="selectedDoc" style="width:100%;">
+                                @foreach($documentos as $documento)
+                                    <option value="{{$documento->id}}">{{__($documento->nombre_documento)}}</option>
+                                @endforeach
+                            </select>
+                            @error('documentos') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Numero de documento:</label><br/>
+                            <input type="text" class="form-control" wire:model="num_doc">
+                            @error('num_doc') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
+                        @if ($selectedDoc=="1")
+                            <div class="form-group">
+                            <label for="description">Numero de NIT:</label><br/>
+                            <input type="text" class="form-control" wire:model="nit">
+                            @error('nit') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Numero de NUP:</label><br/>
+                            <input type="text" class="form-control" wire:model="nup">
+                            @error('nup') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Numero de ISSS:</label><br/>
+                            <input type="text" class="form-control" wire:model="isss">
+                            @error('isss') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
+
+                        @endif
+                            <div class="form-group">
+                            <label for="description">Estado Civil:</label><br/>
+                        
+                                <select class="form-control" id="genero" aria-label="Default select example" wire:model="selectedEstado" style="width:100%;">
+                       
+                                    <option value="Soltero (a)"> Soltero (a)</option>
+                                    <option value="Casado (a)"> Casado (a)</option>
+                        
+                                </select>   
+                        @error('generos') <span class="error text-danger">{{ $message }}</span> @enderror   
+                    </div>
+                    @if ($selectedEstado=="Casado (a)")
+                    <div class="form-group">
+                        <label for="description">Nombre del Conyuge:</label><br/>
+                        <input type="text" class="form-control" wire:model="conyu">
+                        @error('conyu') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    @endif
+                    
+                            
+             
+                            
+                            
+                    </div>
                 </div>
   
-                <div class="form-group">
-                    <label for="description">Product Description:</label>
-                    <textarea type="text" wire:model="description" class="form-control" id="taskDescription">{{{ $description ?? '' }}}</textarea>
-                    @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
-                </div>
   
                 <button class="btn btn-primary nextBtn btn-lg pull-right" wire:click="firstStepSubmit" type="button" >Siguiente</button>
             </div>
