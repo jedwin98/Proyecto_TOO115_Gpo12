@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label for="description">Nombre 3:</label><br/>
                                 <input type="text" class="form-control" wire:model="nombre3">
-                                @error('nombre3') <span class="error text-danger">{{ $message }}</span> @enderror
+                               
                             </div>
                             <div class="form-group">
                                 <label for="description">apellido 1:</label><br/>
@@ -138,7 +138,7 @@
                                     <option value="Casado (a)"> Casado (a)</option>
                         
                                 </select>   
-                        @error('generos') <span class="error text-danger">{{ $message }}</span> @enderror   
+                         
                     </div>
                     @if ($selectedEstado=="Casado (a)")
                     <div class="form-group">
