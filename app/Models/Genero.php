@@ -11,6 +11,6 @@ class Genero extends Model
     use HasFactory;
 
     public function datosPersonales(){
-        return $this->hasMany(DatosPersonale::class, 'pais_iso', 'iso');
+        return $this->hasMany(DatosPersonale::class);
     }
 }
