@@ -23,7 +23,7 @@ class Wizard extends Component
     public $name, $amount, $description, $status = 1, $selectedPais="AF", $selectedCiudad=132722, $residencia, $calle, $numeroVivienda, $stock, $dato1, $dato2, $dato3, $dato4,$nom1,$nom2,$nom3,$nom4, $tel1, $tel2, $tel3, $tel4, $email1, $email2, $email3, $email4, $nomb1, $nomb2, $ed1, $ed2, $paren1, $paren2, $porcen1, $porcen2;
     public $successMessage = '', $ciudades = null, $latitudeMap = 31.94509 , $longitudeMap = 65.5556, $paises = null;
     public $profesion, $lugar_trabajo, $salario, $rubroE, $capacidad_pagoE;
-    public $nombre1, $nombre2, $nombre3, $apellido1, $apellido2, $generos, $selectedGenero="1", $fecha_nac, $documentos,$selectedDoc="1", $num_doc, $nit=null, $nup=null, $isss=null, $estados, $selectedEstado="1", $conyu=null;
+    public $nombre1, $nombre2, $nombre3, $apellido1, $apellido2, $generos, $selectedGenero="1", $fecha_nac, $documentos,$selectedDoc="1", $num_doc, $nit=null, $nup=null, $isss=null, $estados, $selectedEstado="Soltero (a)", $conyu=null;
 
     
     /**
