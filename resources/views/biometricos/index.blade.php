@@ -1,6 +1,7 @@
 @extends('layouts.plantilla')
 @section('css')
 <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
+<link href="{{ asset('css/form_registro_asociado.css') }}" rel="stylesheet">
 <style>
     .kbw-signature { width: 100%; height: 200px;}
     #sig canvas{ width: 100% !important; height: auto;}
@@ -8,7 +9,6 @@
 @endsection
 
 @section('contenido')
-
     <br>
     <div class="container">
         <div class="card">
@@ -16,9 +16,37 @@
             Registro de datos para asociado
         </div>
         <div class="card-body">
+            <div class="stepwizard">
+                <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step">
+                        <a type="button" class="btn btn-circle 'btn-default'">1</a>
+                        <p>Paso 1</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a type="button" class="btn btn-circle 'btn-default'">2</a>
+                        <p>Paso 2</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a type="button" class="btn btn-circle 'btn-default'">3</a>
+                        <p>Paso 3</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a type="button" class="btn btn-circle 'btn-default'">4</a>
+                        <p>Paso 4</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a type="button" class="btn btn-circle 'btn-default'">5</a>
+                        <p>Paso 5</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a type="button" class="btn btn-circle btn-primary">6</a>
+                        <p>Paso 6</p>
+                    </div>
+                </div>
+            </div>
            <div class="col-xs-12">
             <div class="col-md-12">
-                <h3> Paso 6</h3>
+                <h3> Paso 6: Datos biometricos y firma</h3>
                 
                 <div class="form-group">
                     <label for="description">Ingresar fotografia</label>
@@ -35,18 +63,14 @@
                             <div id="results">Tu foto aparecerá aquí...</div>
                         </div>
                         <br>
-                        <div class="card-header">
-                            <h5>Paso 7: ingresa tu firma</h5>
-                        </div>
-                        <div class="card-body">
                         <div class="col-md-12">
+                            <br>
                             <label class="" for="">Dibuja tu firma:</label>
                             <br/>
                             <div id="sig"></div>
                             <br><br>
                             <button id="clear" class="btn btn-danger">Borrar Firma</button>
                             <textarea id="signature" name="signed" style="display: none"></textarea>
-                        </div>
                         </div>
 
 

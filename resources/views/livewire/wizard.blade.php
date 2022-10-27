@@ -9,32 +9,28 @@
 <div class="stepwizard">
     <div class="stepwizard-row setup-panel">
         <div class="stepwizard-step">
-            <a href="#step-1" type="button" class="btn btn-circle {{ $currentStep != 1 ? 'btn-default' : 'btn-primary' }}">1</a>
+            <a type="button" class="btn btn-circle {{ $currentStep != 1 ? 'btn-default' : 'btn-primary' }}">1</a>
             <p>Paso 1</p>
         </div>
         <div class="stepwizard-step">
-            <a href="#step-2" type="button" class="btn btn-circle {{ $currentStep != 2 ? 'btn-default' : 'btn-primary' }}">2</a>
+            <a type="button" class="btn btn-circle {{ $currentStep != 2 ? 'btn-default' : 'btn-primary' }}">2</a>
             <p>Paso 2</p>
         </div>
         <div class="stepwizard-step">
-            <a href="#step-3" type="button" class="btn btn-circle {{ $currentStep != 3 ? 'btn-default' : 'btn-primary' }}">3</a>
+            <a type="button" class="btn btn-circle {{ $currentStep != 3 ? 'btn-default' : 'btn-primary' }}">3</a>
             <p>Paso 3</p>
         </div>
         <div class="stepwizard-step">
-            <a href="#step-4" type="button" class="btn btn-circle {{ $currentStep != 4 ? 'btn-default' : 'btn-primary' }}">4</a>
+            <a type="button" class="btn btn-circle {{ $currentStep != 4 ? 'btn-default' : 'btn-primary' }}">4</a>
             <p>Paso 4</p>
         </div>
         <div class="stepwizard-step">
-            <a href="#step-5" type="button" class="btn btn-circle {{ $currentStep != 5 ? 'btn-default' : 'btn-primary' }}">5</a>
+            <a type="button" class="btn btn-circle {{ $currentStep != 5 ? 'btn-default' : 'btn-primary' }}">5</a>
             <p>Paso 5</p>
         </div>
         <div class="stepwizard-step">
-            <a href="#step-6" type="button" class="btn btn-circle {{ $currentStep != 6 ? 'btn-default' : 'btn-primary' }}">6</a>
+            <a type="button" class="btn btn-circle {{ $currentStep != 6 ? 'btn-default' : 'btn-primary' }}">6</a>
             <p>Paso 6</p>
-        </div>
-        <div class="stepwizard-step">
-            <a href="#step-7" type="button" class="btn btn-circle {{ $currentStep != 7 ? 'btn-default' : 'btn-primary' }}" disabled="disabled">7</a>
-            <p>Paso 7</p>
         </div>
     </div>
 </div>
@@ -423,19 +419,19 @@
                     <div class="form-group">
                         <label for="description">Profesión:</label>
                         <input type="text" wire:model="profesion" class="form-control" id="profesion"/>
-                        @error('stock') <span class="error">{{ $message }}</span> @enderror
+                        @error('profesion') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="description">Lugar de trabajo:</label>
                         <input type="text" wire:model="lugar_trabajo" class="form-control" id="lugar_trabajo"/>
-                        @error('stock') <span class="error">{{ $message }}</span> @enderror
+                        @error('lugar_trabajo') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="description">Salario:</label>
                         <input type="number" wire:model="salario" class="form-control" id="salario"/>
-                        @error('stock') <span class="error">{{ $message }}</span> @enderror
+                        @error('salario') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="col">
@@ -447,62 +443,11 @@
                     <div class="form-group">
                         <label for="empresarial" class="empresarial" style="display:none;">Capacidad de pago:</label>
                         <input type="number" wire:model="capacidad_pagoE" class="form-control empresarial" id="capacidad_pagoE" style="display:none;"></input>
+                        <!-- @error('capacidad_pagoE') <span class="error text-danger">{{ $message }}</span> @enderror -->
                     </div>
                 </div>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="fifthStepSubmit">Siguiente</button>
                 <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(4)">Anterior</button>
-            </div>
-        </div>
-    </div>
-    
-        
-   
-    <div class="row setup-content {{ $currentStep != 6 ? 'displayNone' : '' }}" id="step-6">
-        <div class="col-xs-12">
-            <div class="col-md-12">
-                <h3> Paso 6</h3>
-  
-                <table class="table">
-                    <tr>
-                        <td>Product Name:</td>
-                        <td><strong>{{$name}}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Product Amount:</td>
-                        <td><strong>{{$amount}}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Product status:</td>
-                        <td><strong>{{$status ? 'Active' : 'DeActive'}}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Product Description:</td>
-                        <td><strong>{{$description}}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Product Stock:</td>
-                        <td><strong>{{$stock}}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Dato 1:</td>
-                        <td><strong>{{$dato1}}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Dato 2:</td>
-                        <td><strong>{{$dato2}}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Dato 3:</td>
-                        <td><strong>{{$dato3}}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Dato 4:</td>
-                        <td><strong>{{$dato4}}</strong></td>
-                    </tr>
-                </table>
-  
-                <button class="btn btn-success btn-lg pull-right" wire:click="submitForm" type="button">Terminar</button>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(5)">Anterior</button>
             </div>
         </div>
     </div>

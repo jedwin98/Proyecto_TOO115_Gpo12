@@ -137,15 +137,7 @@ class Wizard extends Component
         ]);
   
         $this->currentStep = 6;
-    }
-
-    public function sixthStepSubmit()
-    {
-        $validatedData = $this->validate([
-            'dato4' => 'required',
-        ]);
-  
-        $this->currentStep = 7;
+        return $this->submitForm();
     }
     /**
      * Write code on Method
@@ -272,11 +264,13 @@ class Wizard extends Component
        
        //fin codigo
 
-        $this->successMessage = 'Registro de asociado completado correctamente.';
+        //$this->successMessage = 'Registro de asociado completado correctamente.';
   
         $this->clearForm();
   
         $this->currentStep = 1;
+
+        return redirect('/biometricos');
 
     }
   
@@ -287,7 +281,7 @@ class Wizard extends Component
      */
     public function back($step)
     {
-        $this->currentStep = $step;    
+        $this->currentStep = $step;  
     }
   
     /**
@@ -307,12 +301,6 @@ class Wizard extends Component
     public function updatedselectedPais($iso){
         $this->ciudades = Ciudad::where('pais_iso','=',$iso)->orderBy('nombreCiudad', 'Asc')->get();
         $this->selectedCiudad = $this->ciudades->first()->id; //poner en la variable el valor de la primera ciudad, ya que la variable no se actualiza si se deja la primera ciudad seleccionada
-        //dd($this->selectedCiudad);
-        // $paiseQuery = Pais::where('iso','=',$iso)->get();
-        // $pais_name = null;
-        // foreach ($paiseQuery as $paisQuery) {
-        //     $pais_name = $paisQuery->nombreMin;
-        // }
 
         try {//cuando encuentra ciudad en el pais
             $ciudadesQueryPais = Ciudad::where('pais_iso','=',$iso)->orderBy('nombreCiudad', 'Asc')->first();
@@ -336,10 +324,7 @@ class Wizard extends Component
                 $this->latitudeMap = $dataMap["data"][0]["latitude"];
                 $this->longitudeMap = $dataMap["data"][0]["longitude"];
             }
-            // $dataMap = PositionStack::forward($pais_name,['country'=>$this->selectedPais, 'limit'=>1]);
-            // $this->latitudeMap = $dataMap["data"][0]["latitude"];
-            // $this->longitudeMap = $dataMap["data"][0]["longitude"];
-            //dd($pais_name,$this->latitudeMap,$this->longitudeMap);
+
             $this->dispatchBrowserEvent('mapa', ['latitudeMap'=>$this->latitudeMap, 'longitudeMap'=>$this->longitudeMap]);
         }
     }
@@ -350,7 +335,7 @@ class Wizard extends Component
         foreach ($ciudadesQueryy as $ciudadQueryy) {
             $ciudad_name_ini = $ciudadQueryy->nombreCiudad;
         }
-        //dd($this->selectedPais,$ciudad_name_ini);
+        
         $dataMap = PositionStack::forward($ciudad_name_ini,['country'=>$this->selectedPais, 'limit'=>1]);
         $this->latitudeMap = $dataMap["data"][0]["latitude"];
         $this->longitudeMap = $dataMap["data"][0]["longitude"];
