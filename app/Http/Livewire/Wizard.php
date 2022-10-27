@@ -170,13 +170,13 @@ class Wizard extends Component
         $asociado->salario = $this->salario;
         $asociado->save();
 
-        $output = new Symfony\Component\Console\Output\ConsoleOutput();
+       /* $output = new Symfony\Component\Console\Output\ConsoleOutput();
         if (!(empty($this->rubroE) || $this->capacidad_pagoE == 0) ){
             
             $output->writeln("Escribiste algo we :v");
         } else {
             $output->writeln("Ignorado como siempre :'v");
-        }
+        }*/
 
         $ubicacion = new Ubicacion();
         $ubicacion->latitud = $data["data"][0]["latitude"];
@@ -229,7 +229,7 @@ class Wizard extends Component
        $bene1=new Beneficiario();
        $bene1->nombre_beneficiario=$this->nomb1;
        $bene1->edad_beneficiario=$this->ed1;
-       $bene1->parentezco=$this->paren1;
+       $bene1->perentezco=$this->paren1;
        $bene1->porcentaje_beneficiario=$this->porcen1;
        $bene1->asociado_id= $asociado->id;;
        $bene1->save();
@@ -237,7 +237,7 @@ class Wizard extends Component
        $bene2=new Beneficiario();
        $bene2->nombre_beneficiario=$this->nomb2;
        $bene2->edad_beneficiario=$this->ed2;
-       $bene2->parentezco=$this->paren2;
+       $bene2->perentezco=$this->paren2;
        $bene2->porcentaje_beneficiario=$this->porcen2;
        $bene2->asociado_id=$asociado->id;
        $bene2->save();
