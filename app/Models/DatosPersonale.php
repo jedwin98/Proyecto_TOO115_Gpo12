@@ -30,6 +30,6 @@ class DatosPersonale extends Model
         return $this->hasMany(SolicitudAsociado::class);
     }
     public function asociado(){
-        return $this->hasOne(Asociado::class);
+        return $this->hasOne(Asociado::class, 'datos_personales_id', 'id');
     }
 }

@@ -20,7 +20,7 @@ class Ubicacion extends Model
     ];
 
     public function pais(){
-        return $this->belongsTo(Pais::class);
+        return $this->belongsTo(Pais::class, 'pais_iso', 'iso');
     }
     public function ciudad(){
         return $this->belongsTo(Ciudad::class);

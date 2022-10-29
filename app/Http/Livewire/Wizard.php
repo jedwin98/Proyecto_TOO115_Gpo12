@@ -253,6 +253,8 @@ class Wizard extends Component
        $datos->direccion_id=$direccion->id;
        $datos->ubicacions_id=$ubicacion->id;
        $datos->save();
+        $asociado->datos_personales_id=$datos->id;
+       $asociado->save();
        //creando la solicitud
        $solicitud= new SolicitudAsociado();
        $solicitud->estado_solicitud="Pendiente";
