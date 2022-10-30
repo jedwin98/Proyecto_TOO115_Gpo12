@@ -179,6 +179,13 @@
                     <img src="{{ asset($solicitud->biometrica->firma_biometrica) }}" alt="" style=" max-width: 100%; max-height: 100%;"> 
 
                 </div>
+                @if ($user_log == $solicitud->user_id)
+                <div>
+                    <form action="{{ route('solicitudes.edit', $solicitud->id) }}" method="GET"><input class="btn btn-success" type="submit" value="Aprobar"></form>
+                  <!--  <form action=" " method="GET"><input class="btn btn-danger" type="submit" value="Rechazar"></form>-->
+                </div> 
+                @endif
+                
              
         </div>
     </div>
