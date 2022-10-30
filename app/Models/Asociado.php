@@ -24,7 +24,7 @@ class Asociado extends Model
     ];
 
     public function datosPersonales(){
-        return $this->belongsTo(DatosPersonale::class);
+        return $this->belongsTo(DatosPersonale::class, 'datos_personales_id', 'id');
     }
     public function asociaciones(){
         return $this->hasMany(Asociacion::class);
