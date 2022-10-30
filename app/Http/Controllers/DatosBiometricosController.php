@@ -54,7 +54,7 @@ class DatosBiometricosController extends Controller
         $solicitud->biometrica_id=$biometrico->id;
         $solicitud->save();
         
-        dd('Image uploaded successfully: '.$fileName . 'firma: '. $file);
+        return view('solicitudes.show', compact('solicitud'));
     }
     
 
