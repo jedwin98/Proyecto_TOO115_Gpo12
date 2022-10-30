@@ -43,6 +43,9 @@ Route::post('/biometricos',[DatosBiometricosController::class,'store'])->name('b
 
 Route::get('/solicitudes', [SolicitudesController::class, 'index'])->name('solicitudes.index');
 Route::get('/solicitudes/{solicitud}', [SolicitudesController::class, 'show'])->name('solicitudes.show');
+Route::get('/solicitudes/{solicitud}/edit', [SolicitudesController::class, 'edit'])->name('solicitudes.edit');
+Route::put('/solicitudes/{solicitud}', [SolicitudesController::class, 'update'])->name('solicitudes.update');
+Route::post('/solicitudes', [SolicitudesController::class, 'store'])->name('solicitudes.store');
 
 Route::get('/roles', [UsuariosController::class, 'roles'])->name('roles');
 
