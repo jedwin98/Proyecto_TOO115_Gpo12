@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                         <th>Estado de la solicitud:  </th>
-                        <td> {{ $solicitud->estado_solicitud}} </td>         
+                        <td> <b>{{ $solicitud->estado_solicitud}}</b>  </td>         
                     </tr>
                     <tr>
                         <th>Fecha de nacimiento:  </th>
@@ -179,10 +179,10 @@
                     <img src="{{ asset($solicitud->biometrica->firma_biometrica) }}" alt="" style=" max-width: 100%; max-height: 100%;"> 
 
                 </div>
-                @if ($user_log == $solicitud->user_id)
+                @if ($user_log != $solicitud->user_id)
                 <div>
                     <form action="{{ route('solicitudes.edit', $solicitud->id) }}" method="GET"><input class="btn btn-success" type="submit" value="Aprobar"></form>
-                  <!--  <form action=" " method="GET"><input class="btn btn-danger" type="submit" value="Rechazar"></form>-->
+                  <form action=" {{ route('solicitudes.store') }}" method="POST"> <input type="hidden" name="soli" value="{{ $solicitud->id }}" > @csrf <input class="btn btn-danger" type="submit" value="Rechazar"></form>
                 </div> 
                 @endif
                 

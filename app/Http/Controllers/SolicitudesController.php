@@ -54,13 +54,17 @@ class SolicitudesController extends Controller
 
         $solicitud->estado_solicitud="Aprobada";
         $solicitud->save();
-        $solicitudes=SolicitudAsociado::where("estado_solicitud","=","Pendiente")->get();
-        return view('solicitudes.index', compact('solicitudes'));
+        return redirect()->route('solicitudes.index');
     }
-    public function denegar(SolicitudAsociado $solicitud){
-        $solicitud->estado_solicitud="Rechazada";
-        $solicitud->save();
-        return view('solicitudes.index');
+    public function store(Request $request){
+        
+        $solicitud=SolicitudAsociado::where("id","=", $request->soli )->get();
+        $soli=$solicitud->first();
+        $soli->estado_solicitud="Rechazada";
+        $soli->save();
+
+       
+        return redirect()->route('solicitudes.index');
     }
 
 
