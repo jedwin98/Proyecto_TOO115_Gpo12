@@ -98,7 +98,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         @auth
                             @if((Auth::user()->hasRole('asociado') || Auth::user()) && (!Auth::user()->hasRole('administrador|junta_directiva')))
-                                <a class="dropdown-item" href="{{ route('solicitud.showUser', Auth::user()->id) }}"><i class="fa-solid fa-table-list"></i> Ver mi ultima solicitud</a>
+                                <a class="dropdown-item" href="{{ route('solicitud.showUser') }}"><i class="fa-solid fa-table-list"></i> Ver mi ultima solicitud</a>
                             @endif
                         @endauth
                         <a class="dropdown-item" href="{{ route('logout') }}"

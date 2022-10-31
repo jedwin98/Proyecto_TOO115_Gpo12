@@ -20,7 +20,7 @@ class SolicitudesController extends Controller
     }
     public function showUser(){
         $user_log=Auth::id();
-        $soli=SolicitudAsociado::where("user_id","=",request('idUsuario'))->get();
+        $soli=SolicitudAsociado::where("user_id","=",$user_log)->get();
         if (!$soli->isEmpty()) { 
             foreach ($soli as $item) {
                 $solicitud = $item;//se retornara siempre la ultima solicitud del aspirante, en dado caso hubiera realizado varias solicitudes
