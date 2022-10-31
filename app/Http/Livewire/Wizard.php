@@ -6,6 +6,7 @@ use App\Models\Asociado;
 use App\Models\Beneficiario;
 use App\Models\Ciudad;
 use App\Models\DatosPersonale;
+use App\Models\Empresario;
 use App\Models\Pais;
 use App\Models\Direccion;
 use App\Models\Genero;
@@ -162,13 +163,14 @@ class Wizard extends Component
         $asociado->salario = $this->salario;
         $asociado->save();
 
-       /* $output = new Symfony\Component\Console\Output\ConsoleOutput();
-        if (!(empty($this->rubroE) || $this->capacidad_pagoE == 0) ){
-            
-            $output->writeln("Escribiste algo we :v");
-        } else {
-            $output->writeln("Ignorado como siempre :'v");
-        }*/
+       
+        if (!(empty($this->rubroE) || $this->capacidad_pagoE == 0) )
+        {
+            $empresario = new Empresario();
+            $empresario->rubro = $this->rubroE;
+            $empresario->capacidad_pago = $this->capacidad_pagoE;
+            $empresario->save();
+        }
 
         $ubicacion = new Ubicacion();
         $ubicacion->latitud = $data["data"][0]["latitude"];
