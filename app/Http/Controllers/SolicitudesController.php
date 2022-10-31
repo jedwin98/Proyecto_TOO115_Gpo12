@@ -6,6 +6,7 @@ use App\Models\Acta;
 use Illuminate\Http\Request;
 use App\Models\SolicitudAsociado;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class SolicitudesController extends Controller
 {
@@ -16,6 +17,19 @@ class SolicitudesController extends Controller
     public function show(SolicitudAsociado $solicitud){
         $user_log=Auth::id();
         return view('solicitudes.show', compact('solicitud','user_log'));
+    }
+    public function showUser(){
+        $user_log=Auth::id();
+        $soli=SolicitudAsociado::where("user_id","=",request('idUsuario'))->get();
+        if (!$soli->isEmpty()) { 
+            foreach ($soli as $item) {
+                $solicitud = $item;//se retornara siempre la ultima solicitud del aspirante, en dado caso hubiera realizado varias solicitudes
+            }
+            return view('solicitudes.show', compact('solicitud','user_log'));
+        }
+        else{
+            return view('solicitudes.show', compact('user_log'));
+        }
     }
     public function edit(SolicitudAsociado $solicitud){
 
@@ -54,6 +68,8 @@ class SolicitudesController extends Controller
 
         $solicitud->estado_solicitud="Aprobada";
         $solicitud->save();
+        $user_id = $solicitud->user_id;
+        User::find($user_id)->assignRole("asociado");
         return redirect()->route('solicitudes.index');
     }
     public function store(Request $request){
@@ -62,7 +78,8 @@ class SolicitudesController extends Controller
         $soli=$solicitud->first();
         $soli->estado_solicitud="Rechazada";
         $soli->save();
-
+        $user_id = $soli->user_id;
+        User::find($user_id)->removeRole("asociado");
        
         return redirect()->route('solicitudes.index');
     }

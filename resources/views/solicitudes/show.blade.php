@@ -5,7 +5,7 @@
 <!-- Favicon.ico -->
 <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.jpeg">
 <!-- Favicon.ico -->
-
+@isset($solicitud)
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
@@ -179,15 +179,19 @@
                     <img src="{{ asset($solicitud->biometrica->firma_biometrica) }}" alt="" style=" max-width: 100%; max-height: 100%;"> 
 
                 </div>
-                @if ($user_log != $solicitud->user_id)
+                @role('administrador|junta_directiva')
                 <div>
                     <form action="{{ route('solicitudes.edit', $solicitud->id) }}" method="GET"><input class="btn btn-success" type="submit" value="Aprobar"></form>
                   <form action=" {{ route('solicitudes.store') }}" method="POST"> <input type="hidden" name="soli" value="{{ $solicitud->id }}" > @csrf <input class="btn btn-danger" type="submit" value="Rechazar"></form>
                 </div> 
-                @endif
-                
-             
+                @endrole 
         </div>
     </div>
 </div>
+@endisset
+@empty($solicitud)
+<div class="alert alert-danger" role="alert">
+Aun no a realizado ninguna solicitud solicitud <a href="/" class="alert-link">haga click aqui para llenar una solicitud</a>
+</div>
+@endempty
 @endsection

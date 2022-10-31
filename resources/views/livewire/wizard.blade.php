@@ -42,8 +42,6 @@
   
                 <div class="row">
                     <div class="col">
-                        
-                                                        
                             <div class="form-group">
                                     <label for="description">Nombre 1:</label><br/>
                                     <input type="text" class="form-control" wire:model="nombre1">

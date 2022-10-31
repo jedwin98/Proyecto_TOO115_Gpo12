@@ -41,11 +41,12 @@ Route::match(['get','post'],'/', function () {
 Route::get('/biometricos',[DatosBiometricosController::class,'index'])->name('biometricos.index');
 Route::post('/biometricos',[DatosBiometricosController::class,'store'])->name('biometricos.store');
 
-Route::get('/solicitudes', [SolicitudesController::class, 'index'])->name('solicitudes.index');
-Route::get('/solicitudes/{solicitud}', [SolicitudesController::class, 'show'])->name('solicitudes.show');
-Route::get('/solicitudes/{solicitud}/edit', [SolicitudesController::class, 'edit'])->name('solicitudes.edit');
-Route::put('/solicitudes/{solicitud}', [SolicitudesController::class, 'update'])->name('solicitudes.update');
-Route::post('/solicitudes', [SolicitudesController::class, 'store'])->name('solicitudes.store');
+Route::get('/solicitudes', [SolicitudesController::class, 'index'])->middleware('auth','2fa')->name('solicitudes.index');
+Route::get('/solicitudes/{solicitud}', [SolicitudesController::class, 'show'])->middleware('auth','2fa')->name('solicitudes.show');
+Route::get('/solicitud/{idUsuario}', [SolicitudesController::class, 'showUser'])->middleware('auth','2fa')->name('solicitud.showUser');
+Route::get('/solicitudes/{solicitud}/edit', [SolicitudesController::class, 'edit'])->middleware('auth','2fa')->name('solicitudes.edit');
+Route::put('/solicitudes/{solicitud}', [SolicitudesController::class, 'update'])->middleware('auth','2fa')->name('solicitudes.update');
+Route::post('/solicitudes', [SolicitudesController::class, 'store'])->middleware('auth','2fa')->name('solicitudes.store');
 
 Route::get('/roles', [UsuariosController::class, 'roles'])->name('roles');
 
