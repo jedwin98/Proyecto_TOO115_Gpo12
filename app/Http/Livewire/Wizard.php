@@ -34,6 +34,7 @@ class Wizard extends Component
      */
     public function mount(){
         $ciudadesQueryy = Ciudad::where("id","=",$this->selectedCiudad)->get();
+        $this->ciudades = Ciudad::where("pais_iso","=",$this->selectedPais)->get();
         $ciudad_name_ini = null;
         foreach ($ciudadesQueryy as $ciudadQueryy) {
             $ciudad_name_ini = $ciudadQueryy->nombreCiudad;
@@ -58,17 +59,25 @@ class Wizard extends Component
     public function firstStepSubmit()
     {
         $validatedData = $this->validate([
-            'nombre1' => 'required',
-            'nombre2' => 'required',
-            'apellido1' => 'required',
-            'apellido2' => 'required',
+            'nombre1' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
+            'nombre2' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
+            'apellido1' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
+            'apellido2' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
             'selectedGenero' => 'required',
             'selectedDoc' => 'required',
             'selectedEstado' => 'required',
             'fecha_nac' => 'required',
-            'num_doc' => 'required',
-            
-            
+            'num_doc' => 'required|numeric',
+            'nit' => 'required_if:selectedDoc,1',
+            'nup' => 'required_if:selectedDoc,1',
+            'isss' => 'required_if:selectedDoc,1',
+            'conyu' => 'required_if:selectedEstado,Casado (a)',
+        ],
+        [
+            'nit.required_if' => 'El campo nit es obligatorio cuando el campo tipo de documento de identidad es dui',
+            'nup.required_if' => 'El campo nup es obligatorio cuando el campo tipo de documento de identidad es dui',
+            'isss.required_if' => 'El campo isss es obligatorio cuando el campo tipo de documento de identidad es dui',
+            'conyu.required_if' => 'El campo conyugue es obligatorio cuando el campo estado civil es Casado (a)',
         ]);
  
         $this->currentStep = 2;
@@ -86,7 +95,7 @@ class Wizard extends Component
             'selectedCiudad' => 'required',
             'residencia' => 'required',
             'calle' => 'required',
-            'numeroVivienda' => 'required',
+            'numeroVivienda' => 'required|numeric',
         ]);
 
         $this->currentStep = 3;
@@ -95,18 +104,18 @@ class Wizard extends Component
     public function thirdStepSubmit()
     {
         $validatedData = $this->validate([
-            'nom1' => 'required',
-            'tel1' => 'required',
-            'email1' => 'required',
-            'nom2' => 'required',
-            'tel2' => 'required',
-            'email2' => 'required',
-            'nom3' => 'required',
-            'tel3' => 'required',
-            'email3' => 'required',
-            'nom4' => 'required',
-            'tel4' => 'required',
-            'email4' => 'required',
+            'nom1' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
+            'tel1' => 'required|numeric',
+            'email1' => 'required|email',
+            'nom2' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
+            'tel2' => 'required|numeric',
+            'email2' => 'required|email',
+            'nom3' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
+            'tel3' => 'required|numeric',
+            'email3' => 'required|email',
+            'nom4' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
+            'tel4' => 'required|numeric',
+            'email4' => 'required|email',
         ]);
   
         $this->currentStep = 4;
@@ -115,13 +124,13 @@ class Wizard extends Component
     public function fourthStepSubmit()
     {
         $validatedData = $this->validate([
-            'nomb1' => 'required',
-            'ed1' => 'required',
-            'paren1' => 'required',
+            'nomb1' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
+            'ed1' => 'required|numeric',
+            'paren1' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
             'porcen1' => 'required',
-            'nomb2' => 'required',
-            'ed2' => 'required',
-            'paren2' => 'required',
+            'nomb2' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
+            'ed2' => 'required|numeric',
+            'paren2' => 'required|regex:/^[a-zA-ZñÑ]+$/u',
             'porcen2' => 'required',
         ]);
   
@@ -255,6 +264,8 @@ class Wizard extends Component
        $datos->direccion_id=$direccion->id;
        $datos->ubicacions_id=$ubicacion->id;
        $datos->save();
+        $asociado->datos_personales_id=$datos->id;
+       $asociado->save();
        //creando la solicitud
        $solicitud= new SolicitudAsociado();
        $solicitud->estado_solicitud="Pendiente";

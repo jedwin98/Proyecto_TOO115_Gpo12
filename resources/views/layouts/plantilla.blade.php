@@ -50,6 +50,18 @@
                 <a class="navbar-brand" href="/asociados"><i class="fa-solid fa-people-group"></i> Gestion de asociados</a>
             @endrole        
         </li>
+        <li class="nav-item">
+            @role('administrador|junta_directiva')
+                <a class="navbar-brand" href="/solicitudes"><i class="fa-solid fa-table-list"></i> Solicitudes</a>
+            @endrole      
+        </li>
+        <!-- <li class="nav-item">
+            @auth
+                @if((Auth::user()->hasRole('asociado') || Auth::user()) && (!Auth::user()->hasRole('administrador|junta_directiva')))
+                    <a class="navbar-brand" href="{{ route('solicitud.showUser', Auth::user()->id) }}"><i class="fa-solid fa-table-list"></i> Solicitudes</a>
+                @endif
+            @endauth
+        </li> -->
         <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown
@@ -84,6 +96,11 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        @auth
+                            @if((Auth::user()->hasRole('asociado') || Auth::user()) && (!Auth::user()->hasRole('administrador|junta_directiva')))
+                                <a class="dropdown-item" href="{{ route('solicitud.showUser') }}"><i class="fa-solid fa-table-list"></i> Ver mi ultima solicitud</a>
+                            @endif
+                        @endauth
                         <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

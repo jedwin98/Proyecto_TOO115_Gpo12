@@ -56,7 +56,7 @@
                         <div class="col-md-6">
                             <div id="my_camera" style="height:auto;width:auto; text-align:left;"></div>
                             <br/>
-                            <input type=button class="btn btn-success" value="Tomar foto" onClick="take_snapshot()">
+                            <button type=button class="btn btn-success" onClick="take_snapshot()"><i class="fa-solid fa-camera"></i> Tomar foto</button>
                             <input type="hidden" name="image" class="image-tag">
                         </div>
                         <div class="col-md-6">
@@ -69,15 +69,15 @@
                             <br/>
                             <div id="sig"></div>
                             <br><br>
-                            <button id="clear" class="btn btn-danger">Borrar Firma</button>
-                            <textarea id="signature" name="signed" style="display: none"></textarea>
+                            <button id="clear" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Borrar Firma</button>
+                            <textarea id="signature" name="signed" style="display: none" required></textarea>
                         </div>
 
 
                       <div class="col-md-12 text-center">
                             <br/>
 
-                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="submit" >Gurdar datos</button>
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="submit" ><i class="fa-solid fa-floppy-disk"></i> Guardar datos</button>
                         </div>
                     </div>
                     </form>
