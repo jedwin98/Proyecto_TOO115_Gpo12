@@ -77,7 +77,7 @@
                             <option value="{{$genero->id}}">{{__($genero->nombre_genero)}}</option>
                         @endforeach
                     </select>
-                    @error('generos') <span class="error text-danger">{{ $message }}</span> @enderror
+                    @error('selectedGenero') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="description">Fecha de Nacimiento:</label><br/>
@@ -98,7 +98,7 @@
                                     <option value="{{$documento->id}}">{{__($documento->nombre_documento)}}</option>
                                 @endforeach
                             </select>
-                            @error('documentos') <span class="error text-danger">{{ $message }}</span> @enderror
+                            @error('selectedDoc') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="description">Numero de documento:</label><br/>
@@ -150,7 +150,7 @@
                 </div>
   
   
-                <button class="btn btn-primary nextBtn btn-lg pull-right" wire:click="firstStepSubmit" type="button" >Siguiente</button>
+                <button class="btn btn-primary nextBtn btn-lg pull-right" wire:click="firstStepSubmit" type="button" ><i class="fa-solid fa-circle-right"></i> Siguiente</button>
             </div>
         </div>
     </div>
@@ -193,8 +193,8 @@
                     <input type="text" class="form-control" wire:model="numeroVivienda">
                     @error('numeroVivienda') <span class="error text-danger">{{ $message }}</span> @enderror
                 </div>
-                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="secondStepSubmit">Siguiente</button>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(1)">Anterior</button>
+                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="secondStepSubmit"><i class="fa-solid fa-circle-right"></i> Siguiente</button>
+                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(1)"><i class="fa-solid fa-circle-left"></i> Anterior</button>
             </div>
             <br>
             <div class="col-md-5">
@@ -328,8 +328,8 @@
                     
             
   
-                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="thirdStepSubmit">Siguiente</button>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(2)">Anterior</button>
+                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="thirdStepSubmit"><i class="fa-solid fa-circle-right"></i> Siguiente</button>
+                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(2)"><i class="fa-solid fa-circle-left"></i> Anterior</button>
             </div>
         </div>
     </div>
@@ -403,8 +403,8 @@
                     </div>
                 </div>
   
-                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="fourthStepSubmit">Siguiente</button>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(3)">Anterior</button>
+                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="fourthStepSubmit"><i class="fa-solid fa-circle-right"></i> Siguiente</button>
+                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(3)"><i class="fa-solid fa-circle-left"></i> Anterior</button>
             </div>
         </div>
     </div>
@@ -444,8 +444,8 @@
                         <!-- @error('capacidad_pagoE') <span class="error text-danger">{{ $message }}</span> @enderror -->
                     </div>
                 </div>
-                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="fifthStepSubmit">Siguiente</button>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(4)">Anterior</button>
+                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" wire:click="fifthStepSubmit"><i class="fa-solid fa-circle-right"></i> Siguiente</button>
+                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button" wire:click="back(4)"><i class="fa-solid fa-circle-left"></i> Anterior</button>
             </div>
         </div>
     </div>
