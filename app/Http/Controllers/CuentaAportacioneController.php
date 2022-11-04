@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CuentaAportacione;
+use App\Models\Asociado;
 
 class CuentaAportacioneController extends Controller
 {
     //
-    public function cuenta_aportacione_data(Request $request){
-        $asociado_id = request('asociado_id');
+    public function cuenta_aportacione_data(Asociado $asociado){
         if(Auth::user()->hasRole(['administrador'])){
-            $cuenta_aportacione = CuentaAportacione::select('cuota','primera_cuota')->with('forma_pago')->where('asociado_id','=',$asociado_id)->get();
-            return response()->json(['CuentaAportacione' => $cuenta_aportacione]);
+            $cuenta_aportacione = CuentaAportacione::where('asociado_id','=',$asociado->id)->get();
+            return view('cuentas.datos_aportacione', (compact($cuenta_aportacione)));
         }
         else{
             Auth::logout();

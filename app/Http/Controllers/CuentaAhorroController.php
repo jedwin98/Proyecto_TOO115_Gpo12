@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CuentaAhorro;
+use App\Models\Asociado;
 
 class CuentaAhorroController extends Controller
 {
     //
-    public function cuenta_ahorro_data(Request $request){
-        $asociado_id = request('asociado_id');
+    public function cuenta_ahorro_data(Asociado $asociado){
         if(Auth::user()->hasRole(['administrador'])){
-            $cuenta_ahorro = CuentaAhorro::select('fecha_ultimo_corte','fecha_este_corte','saldo_anterior','saldo_actual','interes')->where('asociado_id','=',$asociado_id)->get();
-            return response()->json(['CuentaAhorro' => $cuenta_ahorro]);
+            $cuenta_ahorro = CuentaAhorro::where('asociado_id','=',$asociado->id)->get();
+            return view('cuentas.datos_ahorro', (compact($cuenta_ahorro)));
         }
         else{
             Auth::logout();

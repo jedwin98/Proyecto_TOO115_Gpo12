@@ -9,8 +9,6 @@ class CuentaAportacione extends Model
 {
     use HasFactory;
 
-
-
     public function asociado(){
         return $this->belongsTo(Asociado::class);
     }
