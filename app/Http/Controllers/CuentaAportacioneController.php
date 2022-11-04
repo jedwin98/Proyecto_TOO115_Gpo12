@@ -5,14 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CuentaAportacione;
 use App\Models\Asociado;
+use App\Models\FormaPago;
+use Auth;
 
 class CuentaAportacioneController extends Controller
 {
     //
-    public function cuenta_aportacione_data(Asociado $asociado){
-        if(Auth::user()->hasRole(['administrador'])){
-            $cuenta_aportacione = CuentaAportacione::where('asociado_id','=',$asociado->id)->get();
-            return view('cuentas.datos_aportacione', (compact($cuenta_aportacione)));
+    public function cuenta_aportacione_data(){
+        if(Auth::user()->hasRole(['asociado'])){
+            $cuenta_aportacioneQuery = CuentaAportacione::where('asociado_id','=',Auth::user()->id)->get();
+            foreach ($cuenta_aportacioneQuery as $item) {
+                $cuenta_aportacione = $item;
+            }
+            $forma_pagoQuery = FormaPago::where('id','=',$cuenta_aportacione->forma_pago_id)->get();
+            foreach ($forma_pagoQuery as $item2) {
+                $forma_pago = $item2;
+            }
+            return view('cuentas.datos_aportacione', compact('cuenta_aportacione'), compact('forma_pago'));
         }
         else{
             Auth::logout();

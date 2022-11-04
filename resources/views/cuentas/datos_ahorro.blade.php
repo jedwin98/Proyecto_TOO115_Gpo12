@@ -16,7 +16,7 @@
                             <th>Próximo corte:</th>
                             <td>{{ $cuenta_ahorro->fecha_este_corte }}</td>
                             <th>Interés:</th>
-                            <td>{{ $cuenta_ahorro->interes }}</td>
+                            <td>{{ $cuenta_ahorro->interes }} %</td>
                         </tr>
                         <tr>
                             <th>Saldo Anterior:</th>

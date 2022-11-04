@@ -7,6 +7,8 @@ use App\Http\Controllers\SolicitudesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TwoFAController;
+use App\Http\Controllers\CuentaAhorroController;
+use App\Http\Controllers\CuentaAportacioneController;
 
 /*
 |--------------------------------------------------------------------------

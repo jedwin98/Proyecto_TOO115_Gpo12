@@ -16,7 +16,7 @@
                             <th>Primera cuota:</th>
                             <td>{{ $cuenta_aportacione->primera_cuota }}</td>
                             <th>Forma de Pago:</th>
-                            <td>{{ $cuenta_aportacione->forma_pagos->nombre_forma_de_pago }}</td>
+                            <td>{{ $forma_pago->nombre_forma_de_pago }}</td>
                         </tr>
                     </tbody>
                 </table>

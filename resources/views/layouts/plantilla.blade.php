@@ -101,6 +101,16 @@
                                 <a class="dropdown-item" href="{{ route('solicitud.showUser') }}"><i class="fa-solid fa-table-list"></i> Ver mi ultima solicitud</a>
                             @endif
                         @endauth
+                        @auth
+                            @if((Auth::user()->hasRole('asociado')) && (!Auth::user()->hasRole('administrador|junta_directiva|ejecutivo')))
+                                <a class="dropdown-item" href="{{ route('cuentas.datos_ahorro') }}"><i class="fa-solid fa-wallet"></i> Ver cuenta de ahorro</a>
+                            @endif
+                        @endauth
+                        @auth
+                            @if((Auth::user()->hasRole('asociado')) && (!Auth::user()->hasRole('administrador|junta_directiva|ejecutivo')))
+                                <a class="dropdown-item" href="{{ route('cuentas.datos_aportacione') }}"><i class="fa-solid fa-wallet"></i> Ver cuenta de aportaciones</a>
+                            @endif
+                        @endauth
                         <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
