@@ -65,4 +65,6 @@ Route::get('/asociados_data',[AsociadosController::class,'asociados_data'])->mid
 Route::get('/paisesconsultarajax',[AsociadosController::class,'paisesconsultarajax'])->middleware('auth','2fa')->name('paisesconsultarajax');
 Route::get('/ciudadesconsultarajax',[AsociadosController::class,'ciudadesconsultarajax'])->middleware('auth','2fa')->name('ciudadesconsultarajax');
 Route::post('/datos_residencia_editar',[AsociadosController::class,'datosResidenciaUpdate'])->middleware('auth','2fa')->name('datos_residencia_editar');
+Route::get('/asociado_cuentaahorro',[CuentaAhorroController::class,'cuenta_ahorro_data']->middleware('auth','2fa')->name('datos_cuentaahorro'));
+Route::get('/asociado_cuentaaportacione',[CuentaAportacioneController::class,'cuenta_aportacione_data']->middleware('auth','2fa')->name('datos_cuentaaportacione'));
 //fin

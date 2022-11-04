@@ -440,7 +440,7 @@
                     </div>
                     <div class="form-group">
                         <label for="empresarial" class="empresarial">Capacidad de pago:</label>
-                        <input type="number" value=0 wire:model="capacidad_pagoE" class="form-control empresarial" id="capacidad_pagoE"></input>
+                        <input type="number" value='0' min='0' max='1' step='0.01' wire:model="capacidad_pagoE" class="form-control empresarial" id="capacidad_pagoE"></input>
                         <!-- @error('capacidad_pagoE') <span class="error text-danger">{{ $message }}</span> @enderror -->
                     </div>
                 </div>
